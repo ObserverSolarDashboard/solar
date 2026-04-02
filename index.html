@@ -610,17 +610,14 @@ body.light .x-embed-container { background: #f8f9fc; }
     <span id="alertText"></span>
   </div>
 
-  <!-- Connection status — visible by default, hides when data loads -->
-  <div class="conn-banner active" id="connBanner" style="display:flex;">
+  <!-- Connection status — visible by default, hides once any data loads -->
+  <div class="conn-banner" id="connBanner" style="display:none;">
     <span style="font-size:1.6rem;flex-shrink:0;margin-top:2px">📡</span>
     <div>
-      <strong style="font-size:1.05rem;">⬇️ Download this file first — live data requires a real browser</strong>
-      <br style="margin-bottom:6px;">You're viewing this inside a preview that blocks external connections. NOAA, NASA, solar images, and X feeds cannot load here.
+      <strong style="font-size:1.05rem;">Unable to reach NOAA/NASA data servers</strong>
+      <br style="margin-bottom:6px;">This may be a temporary outage on NOAA or NASA's end, or a network issue. The dashboard will keep retrying every 5 minutes.
       <div class="conn-hint">
-        <strong>3 steps to get it working:</strong><br>
-        1. Click the <strong>download button</strong> above to save <code>solar-dashboard.html</code><br>
-        2. Open the file in <strong>Chrome, Firefox, Safari, or Edge</strong><br>
-        3. <strong>Bookmark the page</strong> — it auto-refreshes with live data every 5 minutes
+        Check NOAA status directly: <a href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">swpc.noaa.gov</a>
       </div>
     </div>
   </div>
@@ -1117,10 +1114,10 @@ let connectionFailed = false;
 const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
 const formatUTC = d => d.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
-// Silent fetch wrapper — returns null on failure instead of throwing
+// Silent fetch wrapper — returns null on failure, with 10s timeout
 async function safeFetch(url) {
   try {
-    const r = await fetch(url);
+    const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
     if (!r.ok) return null;
     return await r.json();
   } catch { return null; }
@@ -1389,22 +1386,46 @@ async function fetchSolarWind() {
   ]);
   if (!w || !m) { document.getElementById('windValue').textContent='—'; document.getElementById('bzValue').textContent='—'; return; }
   fetchSuccessCount++;
-  const speed = parseFloat(w.WindSpeed||0), bz = parseFloat(m.Bz||0), bt = parseFloat(m.Bt||0);
-  document.getElementById('windValue').textContent = Math.round(speed);
-  const bar = document.getElementById('windBar');
-  bar.style.width = clamp(speed/900*100,0,100)+'%';
-  bar.style.background = speed>600?'var(--red)':speed>450?'var(--orange)':speed>350?'var(--yellow)':'var(--green)';
-  const bzEl = document.getElementById('bzValue');
-  bzEl.textContent = bz.toFixed(1);
-  bzEl.style.color = bz<-10?'var(--red)':bz<-5?'var(--orange)':bz<0?'var(--yellow)':'var(--green)';
-  document.getElementById('bzDesc').textContent = `nT · Bt: ${bt.toFixed(1)} nT · ${bz<0?'Southward (geo-effective)':'Northward (quiet)'}`;
+  const speed = parseFloat(w.WindSpeed);
+  const bz = parseFloat(m.Bz);
+  const bt = parseFloat(m.Bt);
+
+  // Wind speed of 0 or NaN means NOAA has no data (solar wind is always 250+ km/s)
+  if (!speed || isNaN(speed) || speed < 50) {
+    document.getElementById('windValue').textContent = '—';
+    document.getElementById('windValue').style.color = 'var(--text-muted)';
+  } else {
+    document.getElementById('windValue').textContent = Math.round(speed);
+    const bar = document.getElementById('windBar');
+    bar.style.width = clamp(speed/900*100,0,100)+'%';
+    bar.style.background = speed>600?'var(--red)':speed>450?'var(--orange)':speed>350?'var(--yellow)':'var(--green)';
+  }
+
+  // Bz can legitimately be 0, but if it's NaN then NOAA has no data
+  if (isNaN(bz)) {
+    document.getElementById('bzValue').textContent = '—';
+    document.getElementById('bzValue').style.color = 'var(--text-muted)';
+    document.getElementById('bzDesc').textContent = 'nT — Data temporarily unavailable';
+  } else {
+    const bzEl = document.getElementById('bzValue');
+    bzEl.textContent = bz.toFixed(1);
+    bzEl.style.color = bz<-10?'var(--red)':bz<-5?'var(--orange)':bz<0?'var(--yellow)':'var(--green)';
+    document.getElementById('bzDesc').textContent = `nT · Bt: ${(isNaN(bt)?0:bt).toFixed(1)} nT · ${bz<0?'Southward (geo-effective)':'Northward (quiet)'}`;
+  }
 }
 
 async function fetchFlux() {
   const d = await safeFetch(`${NOAA}/products/summary/10cm-flux.json`);
   if (!d) { document.getElementById('fluxValue').textContent = '—'; return; }
   fetchSuccessCount++;
-  document.getElementById('fluxValue').textContent = Math.round(parseFloat(d.Flux||0));
+  const flux = parseFloat(d.Flux);
+  // Flux of 0 or NaN means NOAA has no data (solar flux is always 60+ sfu)
+  if (!flux || isNaN(flux) || flux < 30) {
+    document.getElementById('fluxValue').textContent = '—';
+    document.getElementById('fluxValue').style.color = 'var(--text-muted)';
+  } else {
+    document.getElementById('fluxValue').textContent = Math.round(flux);
+  }
 }
 
 async function fetchKpChart() {
@@ -1592,7 +1613,7 @@ function clearSkeletons() {
         parent.textContent = '—';
         parent.style.color = 'var(--text-muted)';
       } else {
-        el.outerHTML = '<div class="error-state" style="padding:14px;">Data loads when opened in browser</div>';
+        el.outerHTML = '<div class="error-state" style="padding:14px;">Data temporarily unavailable — will retry on next refresh</div>';
       }
     }
   });
@@ -1609,9 +1630,11 @@ async function refreshAll() {
 
   await Promise.allSettled([fetchScales(),fetchSolarWind(),fetchFlux(),fetchKpChart(),fetchWindChart(),fetchNASAEvents(),fetchAlerts()]);
 
-  // If zero fetches succeeded, show the connection banner and clear skeletons
+  // If zero fetches succeeded, show the connection banner
   setConnectionStatus(fetchSuccessCount > 0);
-  if (fetchSuccessCount === 0) clearSkeletons();
+
+  // Always clear any remaining skeletons (handles partial failures)
+  clearSkeletons();
 
   document.getElementById('lastUpdated').textContent = fetchSuccessCount > 0
     ? formatUTC(new Date())
