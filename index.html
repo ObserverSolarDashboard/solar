@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#030508">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>">
 <title>Solar Watch — Space Weather Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,18 +21,22 @@
   --border-default: rgba(255,255,255,0.07);
   --border-strong: rgba(255,255,255,0.12);
   --border-glow: rgba(100,160,255,0.15);
-  --text-primary: #f0f4fb;
-  --text-secondary: #a0b0cc;
-  --text-tertiary: #6b7fa0;
-  --text-muted: #4a5e80;
+  --text-primary: #e8edf6;
+  --text-secondary: #8a9bba;
+  --text-tertiary: #556380;
+  --text-muted: #3d4e6a;
   --green: #34d399;
   --green-dim: rgba(52,211,153,0.12);
+  --green-bg: #1a5c3a;
   --yellow: #fbbf24;
   --yellow-dim: rgba(251,191,36,0.12);
+  --yellow-bg: #7a5c00;
   --orange: #fb923c;
   --orange-dim: rgba(251,146,60,0.12);
+  --orange-bg: #8a4a10;
   --red: #f87171;
   --red-dim: rgba(248,113,113,0.12);
+  --red-bg: #7a2020;
   --extreme: #ef4444;
   --blue: #60a5fa;
   --blue-dim: rgba(96,165,250,0.1);
@@ -49,152 +51,18 @@
   --radius-md: 12px;
   --radius-lg: 16px;
 }
-
-/* ═══ LIGHT MODE ═══ */
-body.light {
-  --bg-void: #f4f6f9;
-  --bg-deep: #e9ecf2;
-  --bg-panel: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f8f9fc;
-  --bg-elevated: #edf0f7;
-  --bg-detail: #f0f2f7;
-  --border-subtle: rgba(0,0,0,0.06);
-  --border-default: rgba(0,0,0,0.10);
-  --border-strong: rgba(0,0,0,0.16);
-  --border-glow: rgba(40,80,160,0.15);
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-tertiary: #6b7280;
-  --text-muted: #9ca3af;
-  --green-dim: rgba(22,163,74,0.1);
-  --yellow-dim: rgba(202,138,4,0.1);
-  --orange-dim: rgba(234,88,12,0.1);
-  --red-dim: rgba(220,38,38,0.1);
-  --blue-dim: rgba(37,99,235,0.08);
-  --solar-dim: rgba(217,119,6,0.08);
-  --green: #16a34a;
-  --yellow: #ca8a04;
-  --orange: #ea580c;
-  --red: #dc2626;
-  --extreme: #b91c1c;
-  --blue: #2563eb;
-  --cyan: #0891b2;
-  --purple: #7c3aed;
-  --solar: #d97706;
-}
-body.light::before, body.light::after { display: none; }
-body.light .header {
-  background: linear-gradient(135deg, #ffffff, #f8f9ff);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-}
-body.light .header h1 {
-  background: linear-gradient(90deg, #d97706, #1e3a5f, #d97706);
-  -webkit-background-clip: text; background-clip: text;
-}
-body.light .sun-icon {
-  box-shadow: 0 0 16px rgba(217,119,6,0.4), 0 0 32px rgba(217,119,6,0.15);
-}
-body.light .card {
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-body.light .card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
-body.light .scale-item {
-  background: #f0f2f7;
-  border-color: rgba(0,0,0,0.08);
-}
-body.light .analyst-card {
-  background: #f8f9fc;
-  border-color: rgba(0,0,0,0.08);
-}
-body.light .analyst-link, body.light .community-link {
-  background: #f0f2f7;
-  border-color: rgba(0,0,0,0.08);
-  color: var(--text-secondary);
-}
-body.light .analyst-link:hover, body.light .community-link:hover {
-  background: rgba(37,99,235,0.06);
-  border-color: var(--blue);
-  color: var(--text-primary);
-}
-body.light .resource-link {
-  background: #f8f9fc;
-  border-color: rgba(0,0,0,0.08);
-}
-body.light .resource-link:hover {
-  background: #ffffff;
-  border-color: var(--cyan);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-body.light .source-badge {
-  background: rgba(37,99,235,0.08);
-  border-color: rgba(37,99,235,0.15);
-}
-body.light .detail-content {
-  background: #f0f2f7;
-  border-color: rgba(0,0,0,0.08);
-}
-body.light .detail-chip {
-  border-color: rgba(0,0,0,0.15);
-}
-body.light .x-embed-container {
-  background: #f8f9fc;
-  border-color: rgba(0,0,0,0.1);
-}
-body.light .skeleton {
-  background: linear-gradient(90deg, #e9ecf2 25%, #f4f6f9 50%, #e9ecf2 75%);
-  background-size: 200% 100%;
-}
-body.light .conn-banner {
-  background: linear-gradient(135deg, rgba(202,138,4,0.08), rgba(234,88,12,0.05));
-  border-color: rgba(202,138,4,0.3);
-}
-body.light .event-item {
-  background: #f8f9fc;
-  border-color: rgba(0,0,0,0.08);
-}
-body.light .alert-item {
-  background: #f8f9fc;
-}
-body.light .chart-tooltip {
-  background: #ffffff;
-  border-color: rgba(0,0,0,0.15);
-  color: #111827;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-}
-body.light ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
-
-/* Theme toggle button */
-.theme-toggle {
-  display: flex; align-items: center; gap: 6px;
-  font-family: var(--font-mono); font-size: 0.78rem;
-  color: var(--text-tertiary); cursor: pointer;
-  padding: 6px 14px; border-radius: var(--radius-sm);
-  border: 1px solid var(--border-default);
-  background: transparent;
-  transition: all 0.3s;
-  user-select: none;
-}
-.theme-toggle:hover {
-  border-color: var(--solar);
-  color: var(--solar);
-  background: var(--solar-dim);
-}
-.theme-toggle .theme-icon { font-size: 1rem; }
-
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg-void);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 body::before {
   content: '';
@@ -221,41 +89,41 @@ body::after {
 /* HEADER */
 .header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 24px 32px; margin-bottom: 20px;
-  background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-card) 60%, rgba(255,179,71,0.04) 100%);
+  padding: 18px 28px; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--bg-panel), var(--bg-card));
   border: 1px solid var(--border-default); border-radius: var(--radius-lg);
   position: relative; overflow: hidden;
   animation: fadeInDown 0.6s ease-out;
 }
 @keyframes fadeInDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
 .header::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--solar), var(--orange), var(--red), var(--purple), var(--blue), var(--cyan));
 }
-.header-left { display: flex; align-items: center; gap: 20px; }
+.header-left { display: flex; align-items: center; gap: 18px; }
 .sun-icon {
-  width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+  width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
   background: radial-gradient(circle at 40% 40%, #ffd080, #ffb347, #ff8c2a, #d94a00);
-  box-shadow: 0 0 28px rgba(255,140,42,0.5), 0 0 56px rgba(255,140,42,0.2), inset 0 -4px 12px rgba(200,60,0,0.3);
+  box-shadow: 0 0 24px rgba(255,140,42,0.5), 0 0 48px rgba(255,140,42,0.2), inset 0 -4px 12px rgba(200,60,0,0.3);
   animation: pulseSun 4s ease-in-out infinite;
 }
 @keyframes pulseSun {
-  0%, 100% { box-shadow: 0 0 28px rgba(255,140,42,0.5), 0 0 56px rgba(255,140,42,0.2); transform: scale(1); }
-  50% { box-shadow: 0 0 36px rgba(255,140,42,0.65), 0 0 72px rgba(255,140,42,0.3); transform: scale(1.04); }
+  0%, 100% { box-shadow: 0 0 24px rgba(255,140,42,0.5), 0 0 48px rgba(255,140,42,0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 32px rgba(255,140,42,0.65), 0 0 64px rgba(255,140,42,0.3); transform: scale(1.04); }
 }
 .header h1 {
-  font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: 2px;
+  font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; letter-spacing: 1.5px;
   background: linear-gradient(90deg, var(--solar) 0%, #fff 40%, var(--solar) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   text-transform: uppercase;
 }
-.header-subtitle { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary); letter-spacing: 1px; margin-top: 4px; }
+.header-subtitle { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.8px; margin-top: 2px; }
 .header-right { display: flex; align-items: center; gap: 14px; }
 .last-updated { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary); opacity: 0.8; }
 .refresh-btn {
   background: var(--bg-card); border: 1px solid var(--border-strong); color: var(--cyan);
   font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500;
-  padding: 10px 20px; border-radius: var(--radius-sm); cursor: pointer;
+  padding: 8px 18px; border-radius: var(--radius-sm); cursor: pointer;
   transition: all 0.25s; display: flex; align-items: center; gap: 7px; letter-spacing: 0.5px;
 }
 .refresh-btn:hover { background: var(--bg-elevated); border-color: var(--cyan); color: #fff; box-shadow: 0 0 16px rgba(34,211,238,0.15); }
@@ -275,7 +143,7 @@ body::after {
 
 /* ALERT BANNER */
 .alert-banner {
-  padding: 14px 22px; margin-bottom: 18px; border-radius: var(--radius-md);
+  padding: 14px 22px; margin-bottom: 14px; border-radius: var(--radius-md);
   font-family: var(--font-body); font-size: 0.92rem; font-weight: 500;
   display: none; align-items: center; gap: 12px;
   animation: slideIn 0.5s ease-out;
@@ -287,6 +155,105 @@ body::after {
 .alert-banner.orange { background: var(--orange-dim); border: 1px solid rgba(251,146,60,0.3); color: var(--orange); }
 .alert-banner.red { background: var(--red-dim); border: 1px solid rgba(248,113,113,0.3); color: var(--red); animation: slideIn 0.5s ease-out, alertPulse 2.5s ease-in-out infinite; }
 @keyframes alertPulse { 0%,100%{opacity:1}50%{opacity:0.8} }
+
+/* ══════════════════════════════════════════════════
+   NOAA SWPC CONDITIONS PANEL — the hero banner
+   ══════════════════════════════════════════════════ */
+.swpc-panel {
+  background: linear-gradient(135deg, var(--bg-panel), var(--bg-card));
+  border: 1px solid var(--border-default); border-radius: var(--radius-lg);
+  margin-bottom: 16px; overflow: hidden;
+  animation: fadeUp 0.5s ease-out;
+}
+.swpc-title-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px;
+  background: linear-gradient(90deg, rgba(96,165,250,0.08), rgba(34,211,238,0.04));
+  border-bottom: 1px solid var(--border-default);
+}
+.swpc-title {
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-primary);
+}
+.swpc-title-link {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--cyan);
+  text-decoration: none; opacity: 0.7; transition: opacity 0.2s;
+}
+.swpc-title-link:hover { opacity: 1; }
+.swpc-scales-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+  border-bottom: 1px solid var(--border-default);
+}
+.swpc-scale-group {
+  padding: 18px 20px; text-align: center;
+  border-right: 1px solid var(--border-default);
+}
+.swpc-scale-group:last-child { border-right: none; }
+.swpc-group-label {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.swpc-boxes { display: flex; gap: 10px; justify-content: center; align-items: center; }
+.swpc-box {
+  width: 74px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.swpc-box-level {
+  width: 68px; height: 56px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.7rem; font-weight: 800; letter-spacing: 1px;
+  border: 2px solid transparent; transition: all 0.4s;
+}
+.swpc-box-label {
+  font-family: var(--font-body); font-size: 0.68rem; color: var(--text-tertiary);
+  text-align: center; line-height: 1.2;
+}
+/* Scale colors — matching NOAA's green/yellow/orange/red scheme */
+.swpc-box-level.sc-none { background: #1a5c3a; color: #4ade80; border-color: #2a7a4a; }
+.swpc-box-level.sc-minor { background: #1a5c3a; color: #4ade80; border-color: #2a7a4a; }
+.swpc-box-level.sc-moderate { background: #6b5c00; color: #fde047; border-color: #8a7a20; }
+.swpc-box-level.sc-strong { background: #8a4a10; color: #fdba74; border-color: #a86020; }
+.swpc-box-level.sc-severe { background: #7a2020; color: #fca5a5; border-color: #a03030; }
+.swpc-box-level.sc-extreme { background: #6b1010; color: #f87171; border-color: #8a1818; box-shadow: 0 0 12px rgba(248,113,113,0.3); }
+
+/* Predicted section */
+.swpc-predicted {
+  display: flex; gap: 14px; justify-content: center; align-items: flex-end; flex-wrap: wrap;
+}
+.swpc-pred-item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: var(--bg-deep); border: 1px solid var(--border-subtle);
+  border-radius: 8px; padding: 8px 14px; min-width: 80px;
+}
+.swpc-pred-label {
+  font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.swpc-pred-value {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+}
+.swpc-pred-pct {
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-tertiary);
+}
+/* Bottom data bar */
+.swpc-data-bar {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  padding: 0; background: var(--bg-deep);
+}
+.swpc-datum {
+  padding: 14px 20px; text-align: center;
+  border-right: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
+}
+.swpc-datum:last-child { border-right: none; }
+.swpc-datum-label {
+  font-family: var(--font-body); font-size: 0.82rem; color: var(--text-secondary);
+}
+.swpc-datum-value {
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text-primary);
+}
+.swpc-datum-unit {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-tertiary);
+}
 
 /* GRIDS */
 .grid { display: grid; gap: 16px; }
@@ -301,7 +268,7 @@ body::after {
   transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
 }
 .card:hover { border-color: var(--border-strong); background: var(--bg-card-hover); box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
-.card-label { 
+.card-label {
   font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
   text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-tertiary);
   margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
@@ -311,8 +278,8 @@ body::after {
   box-shadow: 0 0 6px rgba(52,211,153,0.4); animation: blink 2.5s ease-in-out infinite;
 }
 @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.25} }
-.card-value { font-family: var(--font-display); font-size: 2.8rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; }
-.card-unit { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 400; color: var(--text-secondary); margin-top: 6px; }
+.card-value { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; }
+.card-unit { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--text-secondary); margin-top: 6px; }
 .card-footer {
   margin-top: 12px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);
   display: flex; align-items: center; justify-content: space-between;
@@ -347,7 +314,7 @@ body::after {
 .detail-content {
   padding: 14px 16px; margin-top: 12px; background: var(--bg-detail);
   border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
-  font-family: var(--font-body); font-size: 0.92rem; line-height: 1.75; color: var(--text-secondary);
+  font-family: var(--font-body); font-size: 0.88rem; line-height: 1.7; color: var(--text-secondary);
 }
 .detail-content strong { color: var(--text-primary); font-weight: 600; }
 .detail-scale { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
@@ -356,25 +323,20 @@ body::after {
   border-radius: 4px; border: 1px solid var(--border-default);
 }
 
-/* NOAA SCALES */
-.scales-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-.scale-item {
-  background: var(--bg-deep); border-radius: var(--radius-sm); padding: 16px;
-  text-align: center; border: 1px solid var(--border-subtle); transition: border-color 0.3s;
+/* SUN IMAGERY — supports both still and animated */
+.sun-viewer {
+  display: flex; flex-direction: column; align-items: center;
 }
-.scale-item:hover { border-color: var(--border-default); }
-.scale-item .scale-type { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: 8px; }
-.scale-item .scale-level { font-family: var(--font-display); font-size: 2rem; font-weight: 700; }
-.scale-item .scale-desc { font-family: var(--font-body); font-size: 0.75rem; color: var(--text-tertiary); margin-top: 4px; }
-
-/* SUN IMAGERY */
 .sun-image-container {
-  width: 100%; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+  width: 100%; max-width: 400px; aspect-ratio: 1; border-radius: 12px; overflow: hidden;
   border: 2px solid var(--border-strong); box-shadow: 0 0 40px rgba(255,140,42,0.1);
-  margin: 12px auto; max-width: 340px; position: relative; background: var(--bg-deep);
+  margin: 12px auto; position: relative; background: var(--bg-deep);
 }
-.sun-image-container img { width:100%; height:100%; object-fit:cover; display:block; }
-.image-tabs { display: flex; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; }
+.sun-image-container.circle { border-radius: 50%; }
+.sun-image-container img, .sun-image-container video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.image-tabs { display: flex; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; justify-content: center; }
 .image-tab {
   font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
   padding: 6px 14px; border-radius: 5px; background: var(--bg-deep);
@@ -441,16 +403,11 @@ body::after {
 
 /* X / Twitter Embed */
 .x-embed-container {
-  max-height: 420px;
-  overflow-y: auto;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-  background: #000;
-  margin-top: 8px;
+  max-height: 420px; overflow-y: auto; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle); background: #000; margin-top: 8px;
 }
 .x-embed-container .twitter-timeline { color: var(--text-secondary) !important; }
 .x-embed-container a { color: var(--cyan); font-family: var(--font-mono); font-size: 0.8rem; }
-body.light .x-embed-container { background: #f8f9fc; }
 
 /* RESOURCES */
 .resource-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
@@ -466,8 +423,8 @@ body.light .x-embed-container { background: #f8f9fc; }
   font-weight: 700; font-size: 0.75rem; flex-shrink: 0;
 }
 .resource-info { flex: 1; min-width: 0; }
-.resource-name { font-weight: 600; font-size: 0.95rem; }
-.resource-desc { font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px; line-height: 1.5; }
+.resource-name { font-weight: 600; font-size: 0.88rem; }
+.resource-desc { font-size: 0.72rem; color: var(--text-tertiary); margin-top: 2px; line-height: 1.4; }
 
 /* UTILITIES */
 .skeleton {
@@ -480,84 +437,11 @@ body.light .x-embed-container { background: #f8f9fc; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
 .card { animation: fadeUp 0.5s ease-out both; }
-.grid-top .card:nth-child(1) { animation-delay: 0.05s; }
-.grid-top .card:nth-child(2) { animation-delay: 0.1s; }
-.grid-top .card:nth-child(3) { animation-delay: 0.15s; }
-.grid-top .card:nth-child(4) { animation-delay: 0.2s; }
 @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 
-/* RESPONSIVE */
-@media (max-width: 1200px) {
-  .grid-top { grid-template-columns: 1fr 1fr; }
-  .analyst-feed { grid-template-columns: 1fr 1fr; }
-  .resource-grid { grid-template-columns: 1fr 1fr !important; }
-}
-@media (max-width: 768px) {
-  .dashboard { padding: 12px; }
-  .grid-top, .grid-main, .grid-triple { grid-template-columns: 1fr; }
-  .analyst-feed { grid-template-columns: 1fr; }
-  .resource-grid { grid-template-columns: 1fr !important; }
-  .header { flex-direction: column; gap: 12px; text-align: center; padding: 16px; }
-  .header-left { flex-direction: column; gap: 10px; }
-  .header h1 { font-size: 1.5rem; }
-  .header-right { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; }
-  .scales-grid { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-  .scale-item { padding: 10px 6px; }
-  .scale-item .scale-level { font-size: 1.5rem; }
-  .scale-item .scale-type { font-size: 0.55rem; letter-spacing: 0.5px; }
-  .card { padding: 16px; }
-  .card-value { font-size: 2.2rem; }
-  .card-label { font-size: 0.65rem; }
-  .section-title { font-size: 0.82rem; margin: 20px 0 10px; }
-  .image-tabs { gap: 4px; }
-  .image-tab { padding: 6px 10px; font-size: 0.62rem; }
-  .chart-container { height: 180px; }
-  .additional-analysts { grid-template-columns: 1fr !important; }
-  .analyst-card { padding: 12px; }
-  .detail-content { font-size: 0.85rem; padding: 12px; }
-  .resource-link { padding: 12px; }
-  .resource-icon { width: 34px; height: 34px; font-size: 0.7rem; }
-  .resource-name { font-size: 0.85rem; }
-  .resource-desc { font-size: 0.72rem; }
-  .conn-banner { padding: 14px 16px; font-size: 0.85rem; }
-  .conn-banner .conn-hint { font-size: 0.75rem; padding: 10px 12px; }
-}
-/* iPhone SE / small phones */
-@media (max-width: 400px) {
-  .dashboard { padding: 8px; }
-  .header h1 { font-size: 1.3rem; letter-spacing: 1px; }
-  .header-subtitle { font-size: 0.7rem; }
-  .scales-grid { grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
-  .scale-item .scale-level { font-size: 1.3rem; }
-  .card-value { font-size: 1.9rem; }
-  .card { padding: 14px; }
-  .theme-toggle { padding: 5px 10px; font-size: 0.7rem; }
-  .refresh-btn { padding: 7px 12px; font-size: 0.72rem; }
-}
-/* Touch-friendly: ensure all interactive elements have 44px min touch target */
-@media (pointer: coarse) {
-  .detail-toggle { min-height: 44px; padding: 8px 14px; font-size: 0.75rem; }
-  .image-tab { min-height: 44px; display: flex; align-items: center; padding: 8px 14px; }
-  .refresh-btn { min-height: 44px; }
-  .theme-toggle { min-height: 44px; }
-  .toggle-switch { width: 44px; height: 26px; }
-  .toggle-switch::after { width: 20px; height: 20px; top: 2px; }
-  .toggle-switch.active::after { left: 20px; }
-  .resource-link { min-height: 52px; }
-  .analyst-link { min-height: 48px; padding: 10px 14px; font-size: 0.78rem; }
-}
-/* Safe area for notch phones */
-@supports (padding: env(safe-area-inset-top)) {
-  .dashboard { padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
-  .header { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
-}
-.footer-text {
-  text-align: center; padding: 36px 0 14px; font-family: var(--font-mono);
-  font-size: 0.68rem; color: var(--text-muted); line-height: 1.7;
-}
-/* Connection status banner */
+/* Connection banner */
 .conn-banner {
-  padding: 20px 28px; margin-bottom: 18px; border-radius: var(--radius-md);
+  padding: 20px 28px; margin-bottom: 16px; border-radius: var(--radius-md);
   background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(251,146,60,0.08));
   border: 2px solid rgba(251,191,36,0.4);
   font-family: var(--font-body); font-size: 0.92rem; color: var(--yellow);
@@ -569,12 +453,42 @@ body.light .x-embed-container { background: #f8f9fc; }
 .conn-banner .conn-hint {
   font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);
   margin-top: 10px; padding: 12px 16px; background: var(--bg-deep);
-  border-radius: 8px; border: 1px solid var(--border-default);
-  line-height: 2;
+  border-radius: 8px; border: 1px solid var(--border-default); line-height: 2;
 }
 .conn-banner .conn-hint code {
   color: var(--cyan); font-size: 0.78rem; background: rgba(34,211,238,0.08);
   padding: 1px 6px; border-radius: 3px;
+}
+.footer-text {
+  text-align: center; padding: 36px 0 14px; font-family: var(--font-mono);
+  font-size: 0.68rem; color: var(--text-muted); line-height: 1.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .analyst-feed { grid-template-columns: 1fr 1fr; }
+  .resource-grid { grid-template-columns: 1fr 1fr; }
+  .swpc-data-bar { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .dashboard { padding: 14px; }
+  .grid-main { grid-template-columns: 1fr; }
+  .analyst-feed, .resource-grid { grid-template-columns: 1fr; }
+  .header { flex-direction: column; gap: 14px; text-align: center; }
+  .header-right { flex-direction: column; }
+  .swpc-scales-row { grid-template-columns: 1fr; }
+  .swpc-scale-group { border-right: none; border-bottom: 1px solid var(--border-default); }
+  .swpc-scale-group:last-child { border-bottom: none; }
+  .swpc-data-bar { grid-template-columns: 1fr; }
+  .swpc-datum { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  .swpc-datum:last-child { border-bottom: none; }
+  .card-value { font-size: 2rem; }
+  .additional-analysts { grid-template-columns: 1fr !important; }
+}
+@media (pointer: coarse) {
+  .detail-toggle, .image-tab, .refresh-btn, .analyst-link, .resource-link {
+    min-height: 44px; display: inline-flex; align-items: center;
+  }
 }
 </style>
 </head>
@@ -586,14 +500,10 @@ body.light .x-embed-container { background: #f8f9fc; }
       <div class="sun-icon"></div>
       <div>
         <h1>Solar Watch</h1>
-        <div class="header-subtitle">Real-Time Space Weather & Solar Activity Dashboard</div>
+        <div class="header-subtitle">Real-Time Space Weather Monitoring</div>
       </div>
     </div>
     <div class="header-right">
-      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-        <span class="theme-icon" id="themeIcon">☀️</span>
-        <span id="themeLabel">Day Mode</span>
-      </button>
       <div class="auto-refresh-toggle">
         <div class="toggle-switch active" id="autoRefreshToggle" onclick="toggleAutoRefresh()"></div>
         <span>Auto-refresh 5 min</span>
@@ -610,198 +520,197 @@ body.light .x-embed-container { background: #f8f9fc; }
     <span id="alertText"></span>
   </div>
 
-  <!-- Connection status — visible by default, hides once any data loads -->
-  <div class="conn-banner" id="connBanner" style="display:none;">
+  <!-- Connection status — visible by default, hides when data loads -->
+  <div class="conn-banner active" id="connBanner" style="display:flex;">
     <span style="font-size:1.6rem;flex-shrink:0;margin-top:2px">📡</span>
     <div>
-      <strong style="font-size:1.05rem;">Unable to reach NOAA/NASA data servers</strong>
-      <br style="margin-bottom:6px;">This may be a temporary outage on NOAA or NASA's end, or a network issue. The dashboard will keep retrying every 5 minutes.
+      <strong style="font-size:1.05rem;">⬇️ Download this file first — live data requires a real browser</strong>
+      <br style="margin-bottom:6px;">You're viewing this inside a preview that blocks external connections. NOAA, NASA, solar images, and X feeds cannot load here.
       <div class="conn-hint">
-        Check NOAA status directly: <a href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;">swpc.noaa.gov</a>
+        <strong>3 steps to get it working:</strong><br>
+        1. Click the <strong>download button</strong> above to save <code>solar-dashboard.html</code><br>
+        2. Open the file in <strong>Chrome, Firefox, Safari, or Edge</strong><br>
+        3. <strong>Bookmark the page</strong> — it auto-refreshes with live data every 5 minutes
       </div>
     </div>
   </div>
 
-  <!-- TOP ROW -->
-  <div class="grid grid-top">
-    <div class="card">
-      <div class="card-label"><span class="dot"></span> Planetary Kp Index</div>
-      <div class="card-value" id="kpValue"><div class="skeleton" style="width:60px;height:36px"></div></div>
-      <div class="card-unit" id="kpDesc">Geomagnetic activity</div>
-      <div class="scale-bar"><div class="scale-bar-fill" id="kpBar" style="width:0%"></div></div>
-      <div class="card-footer">
-        <button class="detail-toggle" onclick="toggleDetail(this)">What's this? <span class="chevron">▾</span></button>
-        <span class="source-badge">NOAA SWPC</span>
-      </div>
-      <div class="detail-panel"><div class="detail-content">
-        The <strong>Kp Index</strong> measures geomagnetic disturbance on a 0–9 scale. It tells you how agitated Earth's magnetic field is, driven by solar wind hitting our magnetosphere.
-        <br><br><strong>Why it matters:</strong> Higher Kp = stronger geomagnetic storm. At Kp 5+ you may see aurora at mid-latitudes. At Kp 7+ expect GPS errors, power grid stress, and HF radio blackouts.
-        <div class="detail-scale">
-          <span class="detail-chip" style="color:var(--green);border-color:var(--green)">0–3 Quiet</span>
-          <span class="detail-chip" style="color:var(--yellow);border-color:var(--yellow)">4 Active</span>
-          <span class="detail-chip" style="color:var(--orange);border-color:var(--orange)">5–6 Storm</span>
-          <span class="detail-chip" style="color:var(--red);border-color:var(--red)">7–9 Severe</span>
-        </div>
-      </div></div>
+  <!-- ══════════════════════════════════════════════════
+       NOAA SWPC-STYLE CONDITIONS PANEL
+       ══════════════════════════════════════════════════ -->
+  <div class="swpc-panel" id="swpcPanel">
+    <div class="swpc-title-bar">
+      <div class="swpc-title">Space Weather Conditions</div>
+      <a href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener" class="swpc-title-link">on NOAA Scales →</a>
     </div>
 
-    <div class="card">
-      <div class="card-label"><span class="dot"></span> Solar Wind Speed</div>
-      <div class="card-value" id="windValue"><div class="skeleton" style="width:80px;height:36px"></div></div>
-      <div class="card-unit">km/s</div>
-      <div class="scale-bar"><div class="scale-bar-fill" id="windBar" style="width:0%"></div></div>
-      <div class="card-footer">
-        <button class="detail-toggle" onclick="toggleDetail(this)">What's this? <span class="chevron">▾</span></button>
-        <span class="source-badge">NOAA SWPC</span>
-      </div>
-      <div class="detail-panel"><div class="detail-content">
-        <strong>Solar wind</strong> is a constant stream of charged particles from the Sun, normally ~400 km/s. CME impacts or coronal hole streams can spike it to 800+ km/s.
-        <br><br><strong>Why it matters:</strong> Faster wind = more energy hitting Earth's magnetosphere. Speeds over 500 km/s often trigger geomagnetic storms, especially when combined with southward Bz.
-        <div class="detail-scale">
-          <span class="detail-chip" style="color:var(--green);border-color:var(--green)">&lt;350 Calm</span>
-          <span class="detail-chip" style="color:var(--yellow);border-color:var(--yellow)">350–450 Elevated</span>
-          <span class="detail-chip" style="color:var(--orange);border-color:var(--orange)">450–600 High</span>
-          <span class="detail-chip" style="color:var(--red);border-color:var(--red)">&gt;600 Extreme</span>
+    <div class="swpc-scales-row">
+      <!-- 24-Hour Observed Maximums -->
+      <div class="swpc-scale-group">
+        <div class="swpc-group-label">24-Hour Observed Maximums</div>
+        <div class="swpc-boxes">
+          <div class="swpc-box">
+            <div class="swpc-box-level sc-none" id="box24R">—</div>
+            <div class="swpc-box-label" id="box24RLabel">—</div>
+          </div>
+          <div class="swpc-box">
+            <div class="swpc-box-level sc-none" id="box24S">—</div>
+            <div class="swpc-box-label" id="box24SLabel">—</div>
+          </div>
+          <div class="swpc-box">
+            <div class="swpc-box-level sc-none" id="box24G">—</div>
+            <div class="swpc-box-label" id="box24GLabel">—</div>
+          </div>
         </div>
-      </div></div>
+      </div>
+
+      <!-- Latest Observed -->
+      <div class="swpc-scale-group">
+        <div class="swpc-group-label">Latest Observed</div>
+        <div class="swpc-boxes">
+          <div class="swpc-box">
+            <div class="swpc-box-level sc-none" id="boxCurrR">—</div>
+            <div class="swpc-box-label" id="boxCurrRLabel">—</div>
+          </div>
+          <div class="swpc-box">
+            <div class="swpc-box-level sc-none" id="boxCurrS">—</div>
+            <div class="swpc-box-label" id="boxCurrSLabel">—</div>
+          </div>
+          <div class="swpc-box">
+            <div class="swpc-box-level sc-none" id="boxCurrG">—</div>
+            <div class="swpc-box-label" id="boxCurrGLabel">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Predicted -->
+      <div class="swpc-scale-group">
+        <div class="swpc-group-label" id="predLabel">Predicted</div>
+        <div class="swpc-predicted" id="predContent">
+          <div class="swpc-pred-item">
+            <div class="swpc-pred-label">R1–R2</div>
+            <div class="swpc-pred-value" id="predRMinor" style="color:var(--text-muted);">—</div>
+          </div>
+          <div class="swpc-pred-item">
+            <div class="swpc-pred-label">R3–R5</div>
+            <div class="swpc-pred-value" id="predRMajor" style="color:var(--text-muted);">—</div>
+          </div>
+          <div class="swpc-pred-item">
+            <div class="swpc-pred-label">S1+</div>
+            <div class="swpc-pred-value" id="predS" style="color:var(--text-muted);">—</div>
+          </div>
+          <div class="swpc-pred-item">
+            <div class="swpc-box-level sc-none" id="predG" style="width:56px;height:46px;font-size:1.3rem;">—</div>
+            <div class="swpc-box-label" id="predGLabel">—</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-label"><span class="dot"></span> Bz Component (IMF)</div>
-      <div class="card-value" id="bzValue"><div class="skeleton" style="width:60px;height:36px"></div></div>
-      <div class="card-unit" id="bzDesc">nT — Interplanetary Magnetic Field</div>
-      <div class="card-footer">
-        <button class="detail-toggle" onclick="toggleDetail(this)">What's this? <span class="chevron">▾</span></button>
-        <span class="source-badge">NOAA SWPC</span>
+    <!-- Bottom data bar -->
+    <div class="swpc-data-bar">
+      <div class="swpc-datum">
+        <span class="swpc-datum-label">Solar Wind Speed:</span>
+        <span class="swpc-datum-value" id="barWindSpeed">—</span>
+        <span class="swpc-datum-unit">km/sec</span>
       </div>
-      <div class="detail-panel"><div class="detail-content">
-        <strong>Bz</strong> is the north–south component of the interplanetary magnetic field carried by the solar wind. Think of it as the "key" that unlocks Earth's magnetosphere.
-        <br><br><strong>Why it matters:</strong> When Bz goes <strong>southward (negative)</strong>, it opposes Earth's field and lets solar energy pour in — this ignites geomagnetic storms. Northward (positive) = Earth's shields hold.
-        <div class="detail-scale">
-          <span class="detail-chip" style="color:var(--green);border-color:var(--green)">&gt;0 Northward</span>
-          <span class="detail-chip" style="color:var(--yellow);border-color:var(--yellow)">0 to −5 Mild</span>
-          <span class="detail-chip" style="color:var(--orange);border-color:var(--orange)">−5 to −10 Storm likely</span>
-          <span class="detail-chip" style="color:var(--red);border-color:var(--red)">&lt;−10 Severe</span>
-        </div>
-      </div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-label"><span class="dot"></span> Solar Radio Flux (F10.7)</div>
-      <div class="card-value" id="fluxValue"><div class="skeleton" style="width:60px;height:36px"></div></div>
-      <div class="card-unit">sfu — Solar Flux Units</div>
-      <div class="card-footer">
-        <button class="detail-toggle" onclick="toggleDetail(this)">What's this? <span class="chevron">▾</span></button>
-        <span class="source-badge">NOAA SWPC</span>
+      <div class="swpc-datum">
+        <span class="swpc-datum-label">Solar Wind Magnetic Fields:</span>
+        <span class="swpc-datum-label">Bt</span>
+        <span class="swpc-datum-value" id="barBt">—</span>
+        <span class="swpc-datum-unit">nT,</span>
+        <span class="swpc-datum-label">Bz</span>
+        <span class="swpc-datum-value" id="barBz">—</span>
+        <span class="swpc-datum-unit">nT</span>
       </div>
-      <div class="detail-panel"><div class="detail-content">
-        <strong>F10.7 Solar Radio Flux</strong> measures microwave radiation from the Sun at 10.7 cm wavelength — the single best proxy for overall solar activity and sunspot count.
-        <br><br><strong>Why it matters:</strong> Higher flux = more active Sun with more sunspots, flares, and CME potential. Solar minimum ~70 sfu, solar max 200+.
-        <div class="detail-scale">
-          <span class="detail-chip" style="color:var(--green);border-color:var(--green)">&lt;100 Low</span>
-          <span class="detail-chip" style="color:var(--yellow);border-color:var(--yellow)">100–150 Moderate</span>
-          <span class="detail-chip" style="color:var(--orange);border-color:var(--orange)">150–200 High</span>
-          <span class="detail-chip" style="color:var(--red);border-color:var(--red)">&gt;200 Very high</span>
-        </div>
-      </div></div>
+      <div class="swpc-datum">
+        <span class="swpc-datum-label">10.7cm Radio Flux:</span>
+        <span class="swpc-datum-value" id="barFlux">—</span>
+        <span class="swpc-datum-unit">sfu</span>
+      </div>
     </div>
   </div>
 
-  <!-- CURRENT CONDITIONS -->
-  <div class="section-title">Current Conditions</div>
+  <!-- ══════════════════════════════════════════════════
+       SOLAR IMAGERY & GEOSPACE — side by side
+       ══════════════════════════════════════════════════ -->
   <div class="grid grid-main">
-    <div class="card">
-      <div class="card-label"><span class="dot"></span> NOAA Space Weather Scales</div>
-      <div class="scales-grid">
-        <div class="scale-item"><div class="scale-type">Radio Blackout</div><div class="scale-level" id="scaleR"><div class="skeleton" style="width:40px;height:32px;margin:0 auto"></div></div><div class="scale-desc" id="scaleRDesc">—</div></div>
-        <div class="scale-item"><div class="scale-type">Solar Radiation</div><div class="scale-level" id="scaleS"><div class="skeleton" style="width:40px;height:32px;margin:0 auto"></div></div><div class="scale-desc" id="scaleSDesc">—</div></div>
-        <div class="scale-item"><div class="scale-type">Geomagnetic Storm</div><div class="scale-level" id="scaleG"><div class="skeleton" style="width:40px;height:32px;margin:0 auto"></div></div><div class="scale-desc" id="scaleGDesc">—</div></div>
-      </div>
-      <div style="margin-top:14px;">
-        <div class="card-label" style="margin-bottom:8px;">24-Hour Maximum</div>
-        <div class="scales-grid">
-          <div class="scale-item"><div class="scale-type">Radio Blackout</div><div class="scale-level" id="scale24R">—</div></div>
-          <div class="scale-item"><div class="scale-type">Solar Radiation</div><div class="scale-level" id="scale24S">—</div></div>
-          <div class="scale-item"><div class="scale-type">Geomagnetic Storm</div><div class="scale-level" id="scale24G">—</div></div>
-        </div>
-      </div>
-      <div class="card-footer">
-        <button class="detail-toggle" onclick="toggleDetail(this)">What's this? <span class="chevron">▾</span></button>
-        <span class="source-badge">NOAA SWPC</span>
-      </div>
-      <div class="detail-panel"><div class="detail-content">
-        NOAA classifies space weather into three scales:
-        <br><br><strong>R (Radio Blackouts):</strong> From solar flares. X-ray bursts ionize the atmosphere and disrupt HF radio. R1 = minor fade, R5 = complete HF blackout for hours.
-        <br><br><strong>S (Solar Radiation Storms):</strong> Energetic protons from the Sun. Dangerous for astronauts, can damage satellites. S1 = minor, S5 = extreme radiation hazard.
-        <br><br><strong>G (Geomagnetic Storms):</strong> Disturbances in Earth's magnetic field from CME impacts. G1 = minor aurora, G5 = widespread power failures and aurora near the equator.
-      </div></div>
-    </div>
-
     <div class="card" style="text-align:center;">
-      <div class="card-label"><span class="dot"></span> Solar Imagery — SOHO Spacecraft</div>
-      <div style="font-family:var(--font-body);font-size:0.8rem;color:var(--text-tertiary);margin-bottom:12px;text-align:left;">Still images updated every ~15 min from the SOHO spacecraft at the L1 point</div>
-      <div class="image-tabs">
+      <div class="card-label"><span class="dot"></span> Solar Imagery</div>
+      <div class="image-tabs" id="imageTabs">
         <div class="image-tab active"
-             data-src="https://soho.nascom.nasa.gov/data/realtime/eit_304/512/latest.jpg"
-             data-fallback="https://soho.nascom.nasa.gov/data/realtime/eit_284/512/latest.jpg"
-             data-shape="circle"
-             onclick="switchSunImage(this)">EIT 304Å</div>
+             data-src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0304.jpg"
+             data-fallback="https://soho.nascom.nasa.gov/data/realtime/eit_304/512/latest.jpg"
+             data-shape="circle" data-label="SDO 304Å"
+             onclick="switchSunImage(this)">SDO 304Å</div>
         <div class="image-tab"
-             data-src="https://soho.nascom.nasa.gov/data/realtime/eit_195/512/latest.jpg"
-             data-fallback=""
-             data-shape="circle"
-             onclick="switchSunImage(this)">EIT 195Å</div>
+             data-src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0193.jpg"
+             data-fallback="https://soho.nascom.nasa.gov/data/realtime/eit_195/512/latest.jpg"
+             data-shape="circle" data-label="SDO 193Å"
+             onclick="switchSunImage(this)">SDO 193Å</div>
         <div class="image-tab"
-             data-src="https://soho.nascom.nasa.gov/data/realtime/eit_171/512/latest.jpg"
-             data-fallback=""
-             data-shape="circle"
-             onclick="switchSunImage(this)">EIT 171Å</div>
+             data-src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0171.jpg"
+             data-fallback="https://soho.nascom.nasa.gov/data/realtime/eit_171/512/latest.jpg"
+             data-shape="circle" data-label="SDO 171Å"
+             onclick="switchSunImage(this)">SDO 171Å</div>
         <div class="image-tab"
-             data-src="https://soho.nascom.nasa.gov/data/realtime/c3/512/latest.jpg"
+             data-src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_HMIBC.jpg"
              data-fallback=""
-             data-shape="rect"
+             data-shape="circle" data-label="HMI Mag"
+             onclick="switchSunImage(this)">HMI Mag</div>
+        <div class="image-tab"
+             data-src="https://soho.nascom.nasa.gov/data/realtime/c3/1024/latest.jpg"
+             data-fallback="https://soho.nascom.nasa.gov/data/realtime/c3/512/latest.jpg"
+             data-shape="rect" data-label="LASCO C3"
              onclick="switchSunImage(this)">LASCO C3</div>
         <div class="image-tab"
-             data-src="https://soho.nascom.nasa.gov/data/realtime/c2/512/latest.jpg"
-             data-fallback=""
-             data-shape="rect"
+             data-src="https://soho.nascom.nasa.gov/data/realtime/c2/1024/latest.jpg"
+             data-fallback="https://soho.nascom.nasa.gov/data/realtime/c2/512/latest.jpg"
+             data-shape="rect" data-label="LASCO C2"
              onclick="switchSunImage(this)">LASCO C2</div>
         <div class="image-tab"
-             data-src="https://soho.nascom.nasa.gov/data/realtime/eit_284/512/latest.jpg"
-             data-fallback=""
-             data-shape="circle"
-             onclick="switchSunImage(this)">EIT 284Å</div>
+             data-src="https://services.swpc.noaa.gov/images/animations/suvi/primary/map/latest.png"
+             data-fallback="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0211.jpg"
+             data-shape="rect" data-label="SUVI Composite"
+             onclick="switchSunImage(this)">SUVI Map</div>
       </div>
-      <div class="sun-image-container" id="sunImageContainer" style="border-radius:16px;aspect-ratio:auto;min-height:320px;display:flex;align-items:center;justify-content:center;">
-        <img id="sunImage" alt="Solar Image" style="display:none;" referrerpolicy="no-referrer">
-        <div class="error-state" id="sunImageFallback" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:200px;gap:12px;padding:20px;">
+
+      <div class="sun-image-container circle" id="sunImageContainer">
+        <div class="error-state" id="sunImageFallback" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:280px;gap:12px;padding:20px;">
           <div style="font-size:3rem;">☀️</div>
           <div style="font-size:0.92rem;color:var(--text-secondary);">Loading solar image…</div>
         </div>
       </div>
+
+      <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://helioviewer.org/" target="_blank" rel="noopener" class="analyst-link" style="justify-content:center;flex:none;font-size:0.72rem;">
+          <span class="link-icon">🎬</span> Helioviewer — Live Solar Movies
+        </a>
+        <a href="https://sdo.gsfc.nasa.gov/data/" target="_blank" rel="noopener" class="analyst-link" style="justify-content:center;flex:none;font-size:0.72rem;">
+          <span class="link-icon">🛰️</span> SDO Data Center
+        </a>
+      </div>
+
       <div class="card-footer">
         <button class="detail-toggle" onclick="toggleDetail(this)">What's this? <span class="chevron">▾</span></button>
-        <span class="source-badge">ESA/NASA SOHO</span>
+        <span class="source-badge">NASA SDO / ESA SOHO / NOAA SUVI</span>
       </div>
       <div class="detail-panel"><div class="detail-content" style="text-align:left;">
-        Still images from <strong>SOHO</strong> (Solar and Heliospheric Observatory), a spacecraft at the L1 point between Earth and Sun. Updated roughly every 15 minutes.
-        <br><br><strong>EIT 304Å:</strong> Sun's chromosphere at ~50,000 K. Shows prominences, filaments, and flare ribbons. Bright spots = active regions.
-        <br><br><strong>EIT 195Å / 171Å:</strong> Corona at ~1–1.5 million K. Dark regions are <strong>coronal holes</strong> — openings that blast fast solar wind toward Earth.
-        <br><br><strong>LASCO C3 / C2:</strong> Coronagraphs blocking the Sun's disk to reveal <strong>CMEs</strong>. A bright halo expanding outward = possible Earth-directed CME. C2 = close view, C3 = wide field.
-        <br><br><strong>EIT 284Å:</strong> Hottest coronal plasma at ~2 million K. Highlights the most energetic active regions.
+        Images from <strong>NASA SDO</strong> (Solar Dynamics Observatory) in geosynchronous orbit, and <strong>SOHO</strong> at the L1 point. SDO updates every ~10 min at much higher resolution than SOHO.
+        <br><br><strong>SDO 304Å:</strong> Chromosphere at ~50,000 K. Shows prominences, filaments, and flare ribbons.
+        <br><br><strong>SDO 193Å / 171Å:</strong> Corona at ~1–1.5 million K. Dark regions = <strong>coronal holes</strong> that blast fast solar wind.
+        <br><br><strong>HMI Magnetogram:</strong> Magnetic field map of the photosphere. White/black = opposite polarities. Complex regions produce flares.
+        <br><br><strong>LASCO C2/C3:</strong> Coronagraphs blocking the Sun to reveal <strong>CMEs</strong>. Bright halos = possible Earth-directed CME.
+        <br><br><strong>SUVI Map:</strong> NOAA's GOES-16 solar ultraviolet imager composite.
       </div></div>
     </div>
-  </div>
 
-  <!-- GEOSPACE — Full-width standalone panel -->
-  <div class="section-title">Geospace — Earth's Magnetosphere</div>
-  <div class="grid" style="grid-template-columns:1fr;">
+    <!-- GEOSPACE -->
     <div class="card">
-      <div class="card-label"><span class="dot"></span> Geospace Timeline — Latest 24 Hours</div>
-      <div style="font-family:var(--font-body);font-size:0.8rem;color:var(--text-tertiary);margin-bottom:12px;">Solar wind parameters at Earth (Bz, density, speed, temperature) and predicted Kp / DST indices</div>
+      <div class="card-label"><span class="dot"></span> Geospace — Earth's Magnetosphere</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text-tertiary);margin-bottom:10px;">Solar wind parameters, predicted Kp & DST — Last 24 hours</div>
       <div style="width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--border-strong);background:#000;">
-        <img id="geospaceImg" src="https://services.swpc.noaa.gov/images/geospace/geospace_1_day.png"
-             alt="Geospace 24hr Timeline" referrerpolicy="no-referrer"
+        <img id="geospaceImg" alt="Geospace 24hr Timeline" referrerpolicy="no-referrer"
              style="width:100%;display:block;"
              onerror="this.style.display='none';document.getElementById('geoFallback').style.display='flex';">
         <div id="geoFallback" style="display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px;gap:12px;">
@@ -810,11 +719,11 @@ body.light .x-embed-container { background: #f8f9fc; }
           <a href="https://services.swpc.noaa.gov/images/geospace/geospace_1_day.png" target="_blank" rel="noopener" style="font-size:0.8rem;color:var(--cyan);text-decoration:none;">Open directly →</a>
         </div>
       </div>
-      <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
         <a href="https://www.swpc.noaa.gov/products/geospace-geomagnetic-activity-plot" target="_blank" rel="noopener"
-           class="analyst-link" style="justify-content:center;flex:none;">🌐 Full interactive Geospace plot →</a>
+           class="analyst-link" style="justify-content:center;flex:none;font-size:0.72rem;">🌐 Full interactive Geospace →</a>
         <a href="https://www.swpc.noaa.gov/products/geospace-magnetosphere-movies" target="_blank" rel="noopener"
-           class="analyst-link" style="justify-content:center;flex:none;">🎬 Magnetosphere movies →</a>
+           class="analyst-link" style="justify-content:center;flex:none;font-size:0.72rem;">🎬 Magnetosphere movies →</a>
       </div>
       <div class="card-footer">
         <button class="detail-toggle" onclick="toggleDetail(this)">What's this? <span class="chevron">▾</span></button>
@@ -895,7 +804,7 @@ body.light .x-embed-container { background: #f8f9fc; }
           <div class="analyst-avatar" style="background:linear-gradient(135deg,#1a3a5c,#2a6a9c);color:#7ab8f5;">BD</div>
           <div><div class="analyst-name">Ben Davidson</div><div class="analyst-handle">@BenDavidsonSO · Suspicious0bservers</div></div>
         </div>
-        <div class="x-embed-container" id="xFeedBD">
+        <div class="x-embed-container">
           <a class="twitter-timeline"
              href="https://twitter.com/BenDavidsonSO"
              data-theme="dark"
@@ -916,7 +825,7 @@ body.light .x-embed-container { background: #f8f9fc; }
           <div class="analyst-avatar" style="background:linear-gradient(135deg,#2d1a4e,#5c2d91);color:#c4a0f5;">ES</div>
           <div><div class="analyst-name">Ethical Skeptic</div><div class="analyst-handle">@TheEthicalSkep</div></div>
         </div>
-        <div class="x-embed-container" id="xFeedES">
+        <div class="x-embed-container">
           <a class="twitter-timeline"
              href="https://twitter.com/TheEthicalSkep"
              data-theme="dark"
@@ -936,7 +845,7 @@ body.light .x-embed-container { background: #f8f9fc; }
           <div class="analyst-avatar" style="background:linear-gradient(135deg,#3a1a1a,#7a3a3a);color:#f08080;">CS</div>
           <div><div class="analyst-name">Craig Stone</div><div class="analyst-handle">@CraigStone_</div></div>
         </div>
-        <div class="x-embed-container" id="xFeedCS">
+        <div class="x-embed-container">
           <a class="twitter-timeline"
              href="https://twitter.com/CraigStone_"
              data-theme="dark"
@@ -983,147 +892,60 @@ body.light .x-embed-container { background: #f8f9fc; }
     </div>
   </div>
 
-  <!-- LEARN MORE -->
-  <div class="section-title">Learn More — Documentaries, Research & Preparedness</div>
-
-  <!-- Documentaries & Key Videos -->
-  <div class="card" style="margin-bottom:16px;">
-    <div class="card-label"><span class="dot" style="background:var(--solar);box-shadow:0 0 6px rgba(255,179,71,0.4);"></span> Must-Watch Documentaries & Videos</div>
-    <div class="resource-grid" style="grid-template-columns:1fr 1fr;">
-      <a href="https://www.youtube.com/results?search_query=The+Disaster+Cycle+Full+Documentary+Ben+Davidson" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#7a2020,#c04040);color:#ffaaaa;">▶</div>
-        <div class="resource-info"><div class="resource-name">The Disaster Cycle — Full Documentary</div><div class="resource-desc">By Ben Davidson · Comprehensive presentation on solar catastrophism and the recurring disaster cycle</div></div>
-      </a>
-      <a href="https://www.youtube.com/results?search_query=The+Disaster+Cycle+The+Evidence+SpaceWeatherNews" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#7a4020,#c06830);color:#ffcc88;">▶</div>
-        <div class="resource-info"><div class="resource-name">The Disaster Cycle — The Evidence</div><div class="resource-desc">By SpaceWeatherNews (SO) · 1 hr 42 min · The scientific evidence behind the disaster cycle theory</div></div>
-      </a>
-      <a href="https://svs.gsfc.nasa.gov/14990/" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#0a2a4a,#1a5080);color:#60b0f0;">🌍</div>
-        <div class="resource-info"><div class="resource-name">SWOT Waterways — NASA Visualization</div><div class="resource-desc">NASA SVS studio · Stunning globe visualization of Earth's rivers and waterways over time from SWOT satellite data</div></div>
-      </a>
-      <a href="https://solarkillshot.org/" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#4a1020,#8a2040);color:#ff7090;">☀</div>
-        <div class="resource-info"><div class="resource-name">SolarKillShot.org</div><div class="resource-desc">Research and analysis on extreme solar events and their potential impact on civilization</div></div>
-      </a>
-    </div>
-  </div>
-
-  <!-- Research Papers & Websites -->
-  <div class="card" style="margin-bottom:16px;">
-    <div class="card-label"><span class="dot" style="background:var(--blue);box-shadow:0 0 6px rgba(96,165,250,0.4);"></span> Research Papers & Key Websites</div>
-    <div class="resource-grid" style="grid-template-columns:1fr 1fr;">
-      <a href="http://suspicious0bservers.org/wp-content/uploads/2016/04/Paper-1.pdf" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a2a4a,#2a4a7a);color:#80b0e0;">📄</div>
-        <div class="resource-info"><div class="resource-name">Peer-Reviewed Paper #1</div><div class="resource-desc">Suspicious0bservers · Free PDF — Solar-terrestrial research</div></div>
-      </a>
-      <a href="http://suspicious0bservers.org/wp-content/uploads/2016/04/Paper-2.pdf" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a2a4a,#2a4a7a);color:#80b0e0;">📄</div>
-        <div class="resource-info"><div class="resource-name">Peer-Reviewed Paper #2</div><div class="resource-desc">Suspicious0bservers · Free PDF — Earth changes & solar forcing</div></div>
-      </a>
-      <a href="https://www.Suspicious0bservers.org" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#0a1a2a,#1a3a5a);color:#5ab0f5;">SO</div>
-        <div class="resource-info"><div class="resource-name">Suspicious0bservers.org</div><div class="resource-desc">Daily news, disaster prediction app, research & community hub</div></div>
-      </a>
-      <a href="https://www.SpaceWeatherNews.com" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a1a3a,#3a3a6a);color:#a090e0;">SWN</div>
-        <div class="resource-info"><div class="resource-name">SpaceWeatherNews.com</div><div class="resource-desc">Space weather news coverage, analysis and video content</div></div>
-      </a>
-      <a href="https://www.ObserverRanch.com" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a2a1a,#2a5a2a);color:#80c080;">OR</div>
-        <div class="resource-info"><div class="resource-name">ObserverRanch.com</div><div class="resource-desc">Observer Ranch — Community preparedness and resilience</div></div>
-      </a>
-    </div>
-  </div>
-
-  <!-- Solar & Earth Data Tools -->
-  <div class="card" style="margin-bottom:16px;">
-    <div class="card-label"><span class="dot" style="background:var(--cyan);box-shadow:0 0 6px rgba(34,211,238,0.4);"></span> Solar & Earth Data Tools</div>
-    <div class="resource-grid" style="grid-template-columns:1fr 1fr 1fr;">
-      <a href="http://sdo.gsfc.nasa.gov/data/" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#2a1a0a,#5a3a1a);color:#ffbb66;">☀</div>
-        <div class="resource-info"><div class="resource-name">NASA SDO Data</div><div class="resource-desc">Solar Dynamics Observatory — latest sun images & data</div></div>
-      </a>
-      <a href="http://www.helioviewer.org/" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#3a2a0a,#6a4a1a);color:#ffcc55;">HV</div>
-        <div class="resource-info"><div class="resource-name">Helioviewer</div><div class="resource-desc">Interactive solar image browser — zoom, overlay, animate</div></div>
-      </a>
-      <a href="https://soho.nascom.nasa.gov/data/Theater/" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a1a3a,#3a3a5a);color:#9090e0;">🎬</div>
-        <div class="resource-info"><div class="resource-name">SOHO Movie Theater</div><div class="resource-desc">Animated SOHO imagery — watch CMEs in motion</div></div>
-      </a>
-      <a href="http://stereo.gsfc.nasa.gov/cgi-bin/images" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#0a2a3a,#1a4a6a);color:#60c0e0;">ST</div>
-        <div class="resource-info"><div class="resource-name">STEREO Images</div><div class="resource-desc">NASA twin spacecraft — 3D views of solar eruptions</div></div>
-      </a>
-      <a href="http://rammb.cira.colostate.edu/ramsdis/online/goes-16.asp" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#002244,#004488);color:#66bbee;">G16</div>
-        <div class="resource-info"><div class="resource-name">GOES-16 Satellite</div><div class="resource-desc">RAMMB/CIRA — real-time GOES satellite imagery</div></div>
-      </a>
-      <a href="https://www.windy.com" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#0a3a2a,#1a5a4a);color:#50d0a0;">🌬</div>
-        <div class="resource-info"><div class="resource-name">Windy.com</div><div class="resource-desc">Real-time global wind, weather & ocean visualization</div></div>
-      </a>
-      <a href="http://earth.nullschool.net" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a2a3a,#2a4a5a);color:#70b0d0;">🌏</div>
-        <div class="resource-info"><div class="resource-name">Nullschool Earth</div><div class="resource-desc">3D globe — wind, ocean currents, atmospheric data</div></div>
-      </a>
-      <a href="https://earthquake.usgs.gov/earthquakes/map" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#3a1a1a,#6a2a2a);color:#ee8080;">📍</div>
-        <div class="resource-info"><div class="resource-name">USGS Earthquake Map</div><div class="resource-desc">Real-time global earthquake activity & seismic data</div></div>
-      </a>
-      <a href="https://www.disastermap.ca/map" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#3a0a0a,#7a1a1a);color:#ff6060;">🚨</div>
-        <div class="resource-info"><div class="resource-name">Disaster Map Canada</div><div class="resource-desc">Live global disaster tracker — wildfires, earthquakes, storms, floods & emergencies</div></div>
-      </a>
-    </div>
-  </div>
-
-  <!-- Preparedness Resources -->
-  <div class="card" style="margin-bottom:16px;">
-    <div class="card-label"><span class="dot" style="background:var(--green);box-shadow:0 0 6px rgba(52,211,153,0.4);"></span> Preparedness Resources</div>
-    <div class="resource-grid" style="grid-template-columns:1fr 1fr 1fr;">
-      <a href="https://heavensharvest.com/" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a3a1a,#2a6a2a);color:#80e080;">🌾</div>
-        <div class="resource-info"><div class="resource-name">Heaven's Harvest</div><div class="resource-desc">Long-term food storage, freeze-dried meals & emergency food supply</div></div>
-      </a>
-      <a href="https://refugemedical.com/" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#2a1a1a,#5a2a2a);color:#f09090;">🏥</div>
-        <div class="resource-info"><div class="resource-name">Refuge Medical</div><div class="resource-desc">Emergency medical kits, trauma supplies & first aid preparedness</div></div>
-      </a>
-      <a href="https://www.ObserverRanch.com" target="_blank" rel="noopener" class="resource-link">
-        <div class="resource-icon" style="background:linear-gradient(135deg,#1a2a1a,#2a5a2a);color:#80c080;">🏡</div>
-        <div class="resource-info"><div class="resource-name">Observer Ranch</div><div class="resource-desc">Resilient community living — preparedness, sustainability, and self-sufficiency</div></div>
-      </a>
-    </div>
-  </div>
-
   <div class="footer-text">
-    Data sourced from NOAA Space Weather Prediction Center & NASA DONKI API<br>
+    Data sourced from NOAA Space Weather Prediction Center, NASA SDO, SOHO & NASA DONKI API<br>
     Community links provided for independent analysis · Auto-refreshes every 5 minutes · All times UTC
   </div>
 </div>
 
 <script>
+// ═══════════════════════════════════════════════════
+// CONFIGURATION
+// ═══════════════════════════════════════════════════
 const NOAA = 'https://services.swpc.noaa.gov';
 const NASA = 'https://api.nasa.gov/DONKI';
 const NASA_KEY = 'DEMO_KEY';
 let autoRefreshInterval = null, autoRefreshOn = true;
 let connectionFailed = false;
+let fetchSuccessCount = 0;
 
 const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
 const formatUTC = d => d.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
-// Silent fetch wrapper — returns null on failure, with 10s timeout
-async function safeFetch(url) {
-  try {
-    const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
-    if (!r.ok) return null;
-    return await r.json();
-  } catch { return null; }
+// ═══════════════════════════════════════════════════
+// SAFE FETCH — returns null on failure, with timeout & retry
+// ═══════════════════════════════════════════════════
+async function safeFetch(url, retries = 1) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 12000);
+      const r = await fetch(url, {
+        signal: controller.signal,
+        cache: 'no-cache'
+      });
+      clearTimeout(timeoutId);
+      if (!r.ok) {
+        if (attempt < retries) { await new Promise(r => setTimeout(r, 1500)); continue; }
+        return null;
+      }
+      const ct = r.headers.get('content-type') || '';
+      if (ct.includes('json')) return await r.json();
+      const text = await r.text();
+      try { return JSON.parse(text); } catch { return text; }
+    } catch (e) {
+      if (attempt < retries) { await new Promise(r => setTimeout(r, 1500)); continue; }
+      return null;
+    }
+  }
+  return null;
 }
 
-function scaleColor(l) { return ['var(--green)','var(--yellow)','var(--yellow)','var(--orange)','var(--red)','var(--extreme)'][clamp(l,0,5)]; }
+// ═══════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════
+const scaleNames = ['none','minor','moderate','strong','severe','extreme'];
+function scaleClass(l) { return 'sc-' + (scaleNames[clamp(l,0,5)] || 'none'); }
 function scaleLabel(l) { return ['None','Minor','Moderate','Strong','Severe','Extreme'][clamp(l,0,5)] || '—'; }
 function kpColor(k) { return k<4?'var(--green)':k<5?'var(--yellow)':k<6?'var(--orange)':k<7?'var(--red)':'var(--extreme)'; }
 
@@ -1140,31 +962,6 @@ function toggleAutoRefresh() {
   else clearInterval(autoRefreshInterval);
 }
 
-// ═══ THEME TOGGLE ═══
-function toggleTheme() {
-  const isLight = document.body.classList.toggle('light');
-  document.getElementById('themeIcon').textContent = isLight ? '🌙' : '☀️';
-  document.getElementById('themeLabel').textContent = isLight ? 'Night Mode' : 'Day Mode';
-  document.querySelector('meta[name="theme-color"]').content = isLight ? '#f4f6f9' : '#030508';
-  try { localStorage.setItem('solarwatch-theme', isLight ? 'light' : 'dark'); } catch {}
-  // Redraw charts with correct colors
-  fetchKpChart();
-  fetchWindChart();
-}
-
-function initTheme() {
-  try {
-    const saved = localStorage.getItem('solarwatch-theme');
-    if (saved === 'light') {
-      document.body.classList.add('light');
-      document.getElementById('themeIcon').textContent = '🌙';
-      document.getElementById('themeLabel').textContent = 'Night Mode';
-      document.querySelector('meta[name="theme-color"]').content = '#f4f6f9';
-    }
-  } catch {}
-}
-
-// Show/hide connection banner
 function setConnectionStatus(ok) {
   connectionFailed = !ok;
   const banner = document.getElementById('connBanner');
@@ -1177,27 +974,43 @@ function setConnectionStatus(ok) {
   }
 }
 
-// ═══ CONNECTIVITY CHECK ═══
-async function checkConnection() {
-  try {
-    const r = await fetch(`${NOAA}/products/summary/10cm-flux.json`, { signal: AbortSignal.timeout(8000) });
-    return r.ok;
-  } catch { return false; }
+// Parse scale level from NOAA's variable response structure
+function parseScale(obj, type) {
+  if (!obj) return 0;
+  // Try obj.R.Scale, obj.RScale, obj.R (as number), etc.
+  const nested = obj[type];
+  if (nested && typeof nested === 'object' && nested.Scale !== undefined) return parseInt(nested.Scale) || 0;
+  if (obj[type + 'Scale'] !== undefined) return parseInt(obj[type + 'Scale']) || 0;
+  if (typeof nested === 'number') return nested;
+  if (typeof nested === 'string') return parseInt(nested) || 0;
+  return 0;
 }
 
-// ═══ CHART ENGINE ═══
+// Get prediction probabilities
+function parsePredProb(obj, type, probKey) {
+  if (!obj) return null;
+  const nested = obj[type];
+  if (nested && typeof nested === 'object' && nested[probKey] !== undefined) return nested[probKey];
+  return null;
+}
+
+// Update a SWPC box element
+function setBox(id, labelId, type, level) {
+  const el = document.getElementById(id);
+  const lbl = document.getElementById(labelId);
+  if (!el) return;
+  el.textContent = level > 0 ? `${type}${level}` : `${type}`;
+  el.className = 'swpc-box-level ' + scaleClass(level);
+  if (lbl) lbl.textContent = scaleLabel(level);
+}
+
+// ═══════════════════════════════════════════════════
+// CHART ENGINE
+// ═══════════════════════════════════════════════════
 function drawChart(canvasId, tooltipId, series, opts) {
   const canvas = document.getElementById(canvasId);
   const tooltip = document.getElementById(tooltipId);
   if (!canvas) return;
-  const isLight = document.body.classList.contains('light');
-  const gridColor = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.045)';
-  const labelColor = isLight ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.28)';
-  const xLabelColor = isLight ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.22)';
-  const zeroColor = isLight ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.12)';
-  const zeroLabel = isLight ? 'rgba(0,0,0,0.45)' : 'rgba(255,255,255,0.3)';
-  const legendColor = isLight ? 'rgba(0,0,0,0.55)' : 'rgba(255,255,255,0.45)';
-  const dotStroke = isLight ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.3)';
   const dpr = window.devicePixelRatio || 1;
   const rect = canvas.parentElement.getBoundingClientRect();
   canvas.width = rect.width * dpr;
@@ -1220,11 +1033,11 @@ function drawChart(canvasId, tooltipId, series, opts) {
   const gc = opts.gridLines || 5;
   for (let i = 0; i <= gc; i++) {
     const y = pad.top + (i / gc) * pH;
-    ctx.strokeStyle = gridColor;
+    ctx.strokeStyle = 'rgba(255,255,255,0.045)';
     ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
     const val = yMax - (i / gc) * yR;
-    ctx.fillStyle = labelColor;
+    ctx.fillStyle = 'rgba(255,255,255,0.28)';
     ctx.font = '10px "IBM Plex Mono"';
     ctx.textAlign = 'right';
     ctx.fillText(val.toFixed(opts.yDec ?? 0), pad.left - 8, y + 4);
@@ -1234,7 +1047,7 @@ function drawChart(canvasId, tooltipId, series, opts) {
   if (series[0]?.labels) {
     const lbls = series[0].labels;
     const step = Math.max(1, Math.floor(lbls.length / 6));
-    ctx.fillStyle = xLabelColor;
+    ctx.fillStyle = 'rgba(255,255,255,0.22)';
     ctx.font = '9px "IBM Plex Mono"';
     ctx.textAlign = 'center';
     for (let i = 0; i < lbls.length; i += step) {
@@ -1254,11 +1067,11 @@ function drawChart(canvasId, tooltipId, series, opts) {
   // Zero line
   if (opts.zeroLine && yMin < 0 && yMax > 0) {
     const zy = pad.top + ((yMax - 0) / yR) * pH;
-    ctx.strokeStyle = zeroColor;
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
     ctx.setLineDash([4, 4]);
     ctx.beginPath(); ctx.moveTo(pad.left, zy); ctx.lineTo(W - pad.right, zy); ctx.stroke();
     ctx.setLineDash([]);
-    ctx.fillStyle = zeroLabel;
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
     ctx.font = '9px "IBM Plex Mono"';
     ctx.textAlign = 'left';
     ctx.fillText('0', W - pad.right + 4, zy + 3);
@@ -1305,7 +1118,7 @@ function drawChart(canvasId, tooltipId, series, opts) {
     const ly = pad.top + ((yMax - v[li]) / yR) * pH;
     ctx.beginPath(); ctx.arc(lx, ly, 4, 0, Math.PI * 2);
     ctx.fillStyle = s.color; ctx.fill();
-    ctx.strokeStyle = dotStroke; ctx.lineWidth = 1; ctx.stroke();
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)'; ctx.lineWidth = 1; ctx.stroke();
   });
 
   // Legend
@@ -1315,7 +1128,7 @@ function drawChart(canvasId, tooltipId, series, opts) {
     series.forEach(s => {
       if (s.dash) { ctx.strokeStyle = s.color; ctx.lineWidth = 2; ctx.setLineDash(s.dash); ctx.beginPath(); ctx.moveTo(lx, 8); ctx.lineTo(lx + 14, 8); ctx.stroke(); ctx.setLineDash([]); }
       else { ctx.fillStyle = s.color; ctx.fillRect(lx, 6, 14, 4); }
-      ctx.fillStyle = legendColor;
+      ctx.fillStyle = 'rgba(255,255,255,0.45)';
       ctx.textAlign = 'left';
       ctx.fillText(s.name, lx + 18, 11);
       lx += ctx.measureText(s.name).width + 36;
@@ -1341,36 +1154,69 @@ function drawChart(canvasId, tooltipId, series, opts) {
   canvas.onmouseleave = () => { tooltip.style.display = 'none'; };
 }
 
-// ═══ FETCHERS (all silent — no console.error) ═══
-let fetchSuccessCount = 0;
+// ═══════════════════════════════════════════════════
+// DATA FETCHERS — robust with retry & multi-format parsing
+// ═══════════════════════════════════════════════════
 
+// Fetch NOAA Scales + populate SWPC conditions panel
 async function fetchScales() {
   const data = await safeFetch(`${NOAA}/products/noaa-scales.json`);
-  if (!data) {
+  if (!data || typeof data !== 'object') {
+    // Set all boxes to blank
     ['R','S','G'].forEach(t => {
-      document.getElementById(`scale${t}`).textContent = '—';
-      document.getElementById(`scale${t}`).style.color = 'var(--text-muted)';
-      document.getElementById(`scale${t}Desc`).textContent = '';
-      document.getElementById(`scale24${t}`).textContent = '—';
-      document.getElementById(`scale24${t}`).style.color = 'var(--text-muted)';
+      setBox('box24' + t, 'box24' + t + 'Label', t, 0);
+      setBox('boxCurr' + t, 'boxCurr' + t + 'Label', t, 0);
     });
     return;
   }
   fetchSuccessCount++;
-  const curr = data['0'];
+
+  const curr = data['0'] || {};
+  const max24 = data['-1'] || {};
+  const pred1 = data['1'] || {};
+
+  // 24-Hour Observed Maximums
   ['R','S','G'].forEach(t => {
-    const l = parseInt(curr[`${t}Scale`] || curr[`${t}`]?.Scale || 0);
-    document.getElementById(`scale${t}`).textContent = `${t}${l}`;
-    document.getElementById(`scale${t}`).style.color = scaleColor(l);
-    document.getElementById(`scale${t}Desc`).textContent = scaleLabel(l);
+    setBox('box24' + t, 'box24' + t + 'Label', t, parseScale(max24, t));
   });
-  const m24 = data['-1'] || {};
+
+  // Latest Observed
   ['R','S','G'].forEach(t => {
-    const l = parseInt(m24[`${t}Scale`] || m24[`${t}`]?.Scale || 0);
-    document.getElementById(`scale24${t}`).textContent = `${t}${l}`;
-    document.getElementById(`scale24${t}`).style.color = scaleColor(l);
+    setBox('boxCurr' + t, 'boxCurr' + t + 'Label', t, parseScale(curr, t));
   });
-  const levels = ['R','S','G'].map(t => parseInt(curr[`${t}Scale`] || 0));
+
+  // Predicted
+  const rMinor = parsePredProb(pred1, 'R', 'MinorProb') || parsePredProb(curr, 'R', 'MinorProb');
+  const rMajor = parsePredProb(pred1, 'R', 'MajorProb') || parsePredProb(curr, 'R', 'MajorProb');
+  const sProb = parsePredProb(pred1, 'S', 'Prob') || parsePredProb(pred1, 'S', 'MinorProb');
+  const gLevel = parseScale(pred1, 'G');
+
+  if (rMinor !== null) {
+    document.getElementById('predRMinor').textContent = rMinor + '%';
+    document.getElementById('predRMinor').style.color = 'var(--text-primary)';
+  }
+  if (rMajor !== null) {
+    document.getElementById('predRMajor').textContent = rMajor + '%';
+    document.getElementById('predRMajor').style.color = 'var(--text-primary)';
+  }
+  if (sProb !== null) {
+    document.getElementById('predS').textContent = sProb + '%';
+    document.getElementById('predS').style.color = 'var(--text-primary)';
+  }
+
+  const predGEl = document.getElementById('predG');
+  const predGLbl = document.getElementById('predGLabel');
+  predGEl.textContent = gLevel > 0 ? `G${gLevel}` : 'G';
+  predGEl.className = 'swpc-box-level ' + scaleClass(gLevel);
+  predGLbl.textContent = scaleLabel(gLevel);
+
+  // Update prediction date label
+  if (pred1.DateStamp) {
+    document.getElementById('predLabel').textContent = `Predicted ${pred1.DateStamp} UTC`;
+  }
+
+  // Alert banner based on current levels
+  const levels = ['R','S','G'].map(t => parseScale(curr, t));
   const max = Math.max(...levels);
   const banner = document.getElementById('alertBanner'), text = document.getElementById('alertText'), icon = document.getElementById('alertIcon');
   if (max >= 4) { banner.className='alert-banner active red'; icon.textContent='🚨'; text.textContent='SEVERE/EXTREME space weather — Monitor for impacts'; }
@@ -1379,80 +1225,53 @@ async function fetchScales() {
   else { banner.className='alert-banner active green'; icon.textContent='✓'; text.textContent='All quiet — No significant space weather activity'; }
 }
 
+// Fetch solar wind + magnetic field → populate data bar and Kp
 async function fetchSolarWind() {
   const [w, m] = await Promise.all([
     safeFetch(`${NOAA}/products/summary/solar-wind-speed.json`),
     safeFetch(`${NOAA}/products/summary/solar-wind-mag-field.json`),
   ]);
-  if (!w || !m) { document.getElementById('windValue').textContent='—'; document.getElementById('bzValue').textContent='—'; return; }
-  fetchSuccessCount++;
-  const speed = parseFloat(w.WindSpeed);
-  const bz = parseFloat(m.Bz);
-  const bt = parseFloat(m.Bt);
-
-  // Wind speed of 0 or NaN means NOAA has no data (solar wind is always 250+ km/s)
-  if (!speed || isNaN(speed) || speed < 50) {
-    document.getElementById('windValue').textContent = '—';
-    document.getElementById('windValue').style.color = 'var(--text-muted)';
-  } else {
-    document.getElementById('windValue').textContent = Math.round(speed);
-    const bar = document.getElementById('windBar');
-    bar.style.width = clamp(speed/900*100,0,100)+'%';
-    bar.style.background = speed>600?'var(--red)':speed>450?'var(--orange)':speed>350?'var(--yellow)':'var(--green)';
+  if (w) {
+    fetchSuccessCount++;
+    const speed = Math.round(parseFloat(w.WindSpeed || 0));
+    document.getElementById('barWindSpeed').textContent = speed;
+    document.getElementById('barWindSpeed').style.color =
+      speed > 600 ? 'var(--red)' : speed > 450 ? 'var(--orange)' : speed > 350 ? 'var(--yellow)' : 'var(--text-primary)';
   }
-
-  // Bz can legitimately be 0, but if it's NaN then NOAA has no data
-  if (isNaN(bz)) {
-    document.getElementById('bzValue').textContent = '—';
-    document.getElementById('bzValue').style.color = 'var(--text-muted)';
-    document.getElementById('bzDesc').textContent = 'nT — Data temporarily unavailable';
-  } else {
-    const bzEl = document.getElementById('bzValue');
-    bzEl.textContent = bz.toFixed(1);
-    bzEl.style.color = bz<-10?'var(--red)':bz<-5?'var(--orange)':bz<0?'var(--yellow)':'var(--green)';
-    document.getElementById('bzDesc').textContent = `nT · Bt: ${(isNaN(bt)?0:bt).toFixed(1)} nT · ${bz<0?'Southward (geo-effective)':'Northward (quiet)'}`;
+  if (m) {
+    if (!w) fetchSuccessCount++;
+    const bz = parseFloat(m.Bz || 0);
+    const bt = parseFloat(m.Bt || 0);
+    document.getElementById('barBt').textContent = bt.toFixed(0);
+    const bzEl = document.getElementById('barBz');
+    bzEl.textContent = bz.toFixed(0);
+    bzEl.style.color = bz < -10 ? 'var(--red)' : bz < -5 ? 'var(--orange)' : bz < 0 ? 'var(--yellow)' : 'var(--text-primary)';
   }
 }
 
 async function fetchFlux() {
   const d = await safeFetch(`${NOAA}/products/summary/10cm-flux.json`);
-  if (!d) { document.getElementById('fluxValue').textContent = '—'; return; }
+  if (!d) return;
   fetchSuccessCount++;
-  const flux = parseFloat(d.Flux);
-  // Flux of 0 or NaN means NOAA has no data (solar flux is always 60+ sfu)
-  if (!flux || isNaN(flux) || flux < 30) {
-    document.getElementById('fluxValue').textContent = '—';
-    document.getElementById('fluxValue').style.color = 'var(--text-muted)';
-  } else {
-    document.getElementById('fluxValue').textContent = Math.round(flux);
-  }
+  document.getElementById('barFlux').textContent = Math.round(parseFloat(d.Flux || 0));
 }
 
 async function fetchKpChart() {
   const data = await safeFetch(`${NOAA}/products/noaa-planetary-k-index.json`);
-  if (!data || !Array.isArray(data) || data.length < 2) {
-    document.getElementById('kpValue').textContent = '—';
-    return;
-  }
+  if (!data || !Array.isArray(data) || data.length < 2) return;
   fetchSuccessCount++;
   const rows = data.slice(1).slice(-32);
   let currentKp = 0;
   const vals = [], labels = [];
   rows.forEach((r, i) => {
-    const kp = parseFloat(r[1]); vals.push(kp); labels.push(r[0].substring(5,16));
-    if (i === rows.length-1) currentKp = kp;
+    const kp = parseFloat(r[1]); vals.push(kp); labels.push(r[0].substring(5, 16));
+    if (i === rows.length - 1) currentKp = kp;
   });
-  document.getElementById('kpValue').textContent = currentKp.toFixed(1);
-  document.getElementById('kpValue').style.color = kpColor(currentKp);
-  document.getElementById('kpBar').style.width = (currentKp/9*100)+'%';
-  document.getElementById('kpBar').style.background = kpColor(currentKp);
-  const descs = {0:'Quiet',1:'Quiet',2:'Quiet',3:'Unsettled',4:'Active',5:'Minor storm',6:'Moderate storm',7:'Strong storm',8:'Severe storm',9:'Extreme storm'};
-  document.getElementById('kpDesc').textContent = descs[Math.floor(currentKp)] || 'Geomagnetic activity';
-  if (rows.length) document.getElementById('kpChartRange').textContent = `${rows[0][0].substring(5,16)} → ${rows[rows.length-1][0].substring(5,16)} UTC`;
+  if (rows.length) document.getElementById('kpChartRange').textContent = `${rows[0][0].substring(5, 16)} → ${rows[rows.length - 1][0].substring(5, 16)} UTC`;
 
-  drawChart('kpCanvas','kpTooltip',[{
-    name:'Kp Index', values:vals, labels:labels, color:'#34d399', fill:'rgba(52,211,153,0.12)', lineWidth:2.5,
-  }],{yMin:0,yMax:9,gridLines:9,yDec:1,thresholds:[{from:5,to:9,color:'rgba(248,113,113,0.06)'},{from:4,to:5,color:'rgba(251,191,36,0.04)'}]});
+  drawChart('kpCanvas', 'kpTooltip', [{
+    name: 'Kp Index', values: vals, labels: labels, color: '#34d399', fill: 'rgba(52,211,153,0.12)', lineWidth: 2.5,
+  }], { yMin: 0, yMax: 9, gridLines: 9, yDec: 1, thresholds: [{ from: 5, to: 9, color: 'rgba(248,113,113,0.06)' }, { from: 4, to: 5, color: 'rgba(251,191,36,0.04)' }] });
 }
 
 async function fetchWindChart() {
@@ -1462,41 +1281,42 @@ async function fetchWindChart() {
   ]);
   if (!plasma || !mag || !Array.isArray(plasma) || !Array.isArray(mag)) return;
   fetchSuccessCount++;
-  const step = Math.max(1, Math.floor(plasma.length/120));
-  const mstep = Math.max(1, Math.floor(mag.length/120));
-  const speeds=[], sLabels=[], bzVals=[];
-  for (let i=1; i<plasma.length; i+=step) { const v=parseFloat(plasma[i][2]); if(!isNaN(v)&&v>0){speeds.push(v);sLabels.push(plasma[i][0].substring(5,16));}}
-  for (let i=1; i<mag.length; i+=mstep) { const v=parseFloat(mag[i][3]); if(!isNaN(v)) bzVals.push(v); }
+  const step = Math.max(1, Math.floor(plasma.length / 120));
+  const mstep = Math.max(1, Math.floor(mag.length / 120));
+  const speeds = [], sLabels = [], bzVals = [];
+  for (let i = 1; i < plasma.length; i += step) { const v = parseFloat(plasma[i][2]); if (!isNaN(v) && v > 0) { speeds.push(v); sLabels.push(plasma[i][0].substring(5, 16)); } }
+  for (let i = 1; i < mag.length; i += mstep) { const v = parseFloat(mag[i][3]); if (!isNaN(v)) bzVals.push(v); }
   if (speeds.length < 2 || bzVals.length < 2) return;
   const len = Math.min(speeds.length, bzVals.length);
   const sv = speeds.slice(-len), bv = bzVals.slice(-len), sl = sLabels.slice(-len);
-  if (sl.length) document.getElementById('windChartRange').textContent = `${sl[0]} → ${sl[sl.length-1]} UTC`;
+  if (sl.length) document.getElementById('windChartRange').textContent = `${sl[0]} → ${sl[sl.length - 1]} UTC`;
 
-  drawChart('windCanvas','windTooltip',[
-    { name:'Wind km/s', values:sv, labels:sl, color:'#60a5fa', fill:'rgba(96,165,250,0.07)', lineWidth:2 },
-    { name:'Bz nT (scaled)', values:bv.map(v => { const sMin=200,sMax=Math.max(800,...sv),bMin=Math.min(-20,...bv),bMax=Math.max(20,...bv); return sMin+((v-bMin)/(bMax-bMin))*(sMax-sMin); }), labels:sl, color:'#a78bfa', lineWidth:1.5, dash:[4,3] }
-  ],{yMin:200,yMax:Math.max(800,...sv),gridLines:6,yDec:0,thresholds:[{from:600,to:Math.max(800,...sv),color:'rgba(248,113,113,0.04)'}]});
+  drawChart('windCanvas', 'windTooltip', [
+    { name: 'Wind km/s', values: sv, labels: sl, color: '#60a5fa', fill: 'rgba(96,165,250,0.07)', lineWidth: 2 },
+    { name: 'Bz nT (scaled)', values: bv.map(v => { const sMin = 200, sMax = Math.max(800, ...sv), bMin = Math.min(-20, ...bv), bMax = Math.max(20, ...bv); return sMin + ((v - bMin) / (bMax - bMin)) * (sMax - sMin); }), labels: sl, color: '#a78bfa', lineWidth: 1.5, dash: [4, 3] }
+  ], { yMin: 200, yMax: Math.max(800, ...sv), gridLines: 6, yDec: 0, thresholds: [{ from: 600, to: Math.max(800, ...sv), color: 'rgba(248,113,113,0.04)' }] });
 }
 
 async function fetchNASAEvents() {
   const c = document.getElementById('nasaEvents');
   const end = new Date().toISOString().split('T')[0];
-  const start = new Date(Date.now()-7*864e5).toISOString().split('T')[0];
-  const [cmes,flares] = await Promise.all([
+  const start = new Date(Date.now() - 7 * 864e5).toISOString().split('T')[0];
+  const [cmes, flares] = await Promise.all([
     safeFetch(`${NASA}/CME?startDate=${start}&endDate=${end}&api_key=${NASA_KEY}`),
     safeFetch(`${NASA}/FLR?startDate=${start}&endDate=${end}&api_key=${NASA_KEY}`),
   ]);
   const cmeArr = Array.isArray(cmes) ? cmes : [];
   const flrArr = Array.isArray(flares) ? flares : [];
   if (!cmeArr.length && !flrArr.length && connectionFailed) {
-    c.innerHTML='<div class="error-state">Unable to reach NASA — download and open in browser</div>'; return;
+    c.innerHTML = '<div class="error-state">Unable to reach NASA — download and open in browser</div>'; return;
   }
+  if (cmeArr.length || flrArr.length) fetchSuccessCount++;
   let evts = [];
-  cmeArr.forEach(e => evts.push({type:'CME',time:e.startTime||e.activityID,note:e.note||`Speed: ${e.cmeAnalyses?.[0]?.speed||'—'} km/s`}));
-  flrArr.forEach(e => evts.push({type:'Flare',time:e.beginTime||e.flrID,note:`Class ${e.classType||'—'} · ${e.sourceLocation||''}`}));
-  evts.sort((a,b)=>new Date(b.time)-new Date(a.time));
-  if(!evts.length){c.innerHTML='<div class="error-state">No significant events in the past 7 days</div>';return;}
-  c.innerHTML = evts.slice(0,15).map(e=>`<div class="event-item"><span class="event-type ${e.type==='CME'?'cme':'flare'}">${e.type}</span><span style="color:var(--text-muted);margin-left:8px;font-family:var(--font-mono);font-size:0.65rem">${e.time}</span><div style="color:var(--text-secondary);margin-top:5px;line-height:1.5">${e.note}</div></div>`).join('');
+  cmeArr.forEach(e => evts.push({ type: 'CME', time: e.startTime || e.activityID, note: e.note || `Speed: ${e.cmeAnalyses?.[0]?.speed || '—'} km/s` }));
+  flrArr.forEach(e => evts.push({ type: 'Flare', time: e.beginTime || e.flrID, note: `Class ${e.classType || '—'} · ${e.sourceLocation || ''}` }));
+  evts.sort((a, b) => new Date(b.time) - new Date(a.time));
+  if (!evts.length) { c.innerHTML = '<div class="error-state">No significant events in the past 7 days</div>'; return; }
+  c.innerHTML = evts.slice(0, 15).map(e => `<div class="event-item"><span class="event-type ${e.type === 'CME' ? 'cme' : 'flare'}">${e.type}</span><span style="color:var(--text-muted);margin-left:8px;font-family:var(--font-mono);font-size:0.65rem">${e.time}</span><div style="color:var(--text-secondary);margin-top:5px;line-height:1.5">${e.note}</div></div>`).join('');
 }
 
 async function fetchAlerts() {
@@ -1508,133 +1328,125 @@ async function fetchAlerts() {
       : '<div class="error-state">No active alerts</div>';
     return;
   }
-  if(!d.length){c.innerHTML='<div class="error-state">No active alerts</div>';return;}
-  c.innerHTML = d.slice(0,8).map(a=>{
-    const cls=/alert/i.test(a.product_id||'')?'alert':/warning/i.test(a.product_id||'')?'warn':'';
-    const msg=(a.message||'').substring(0,350).replace(/\n/g,' ');
-    return `<div class="alert-item ${cls}"><div class="alert-time">${a.issue_datetime||''}</div>${msg}${(a.message||'').length>350?'…':''}</div>`;
+  if (d.length) fetchSuccessCount++;
+  if (!d.length) { c.innerHTML = '<div class="error-state">No active alerts</div>'; return; }
+  c.innerHTML = d.slice(0, 8).map(a => {
+    const cls = /alert/i.test(a.product_id || '') ? 'alert' : /warning/i.test(a.product_id || '') ? 'warn' : '';
+    const msg = (a.message || '').substring(0, 350).replace(/\n/g, ' ');
+    return `<div class="alert-item ${cls}"><div class="alert-time">${a.issue_datetime || ''}</div>${msg}${(a.message || '').length > 350 ? '…' : ''}</div>`;
   }).join('');
 }
 
+// ═══════════════════════════════════════════════════
+// SOLAR IMAGE VIEWER — supports SDO, SOHO, SUVI with fallback chain
+// ═══════════════════════════════════════════════════
 function switchSunImage(tab) {
-  document.querySelectorAll('.image-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.image-tab').forEach(t => t.classList.remove('active'));
   tab.classList.add('active');
+
   const ctr = document.getElementById('sunImageContainer');
   const fallbackDiv = document.getElementById('sunImageFallback');
   const shape = tab.dataset.shape || 'circle';
 
-  // Shape
-  if (shape === 'rect') { ctr.style.borderRadius='12px'; ctr.style.aspectRatio='auto'; }
-  else { ctr.style.borderRadius='50%'; ctr.style.aspectRatio='1'; }
+  ctr.classList.toggle('circle', shape === 'circle');
+  if (shape === 'rect') { ctr.style.aspectRatio = 'auto'; ctr.style.minHeight = '320px'; }
+  else { ctr.style.aspectRatio = '1'; ctr.style.minHeight = ''; }
 
   const primaryUrl = tab.dataset.src;
   const fallbackUrl = tab.dataset.fallback;
 
-  // Remove old img and create fresh one each time (avoids stale event handlers)
-  const oldImg = document.getElementById('sunImage');
+  // Remove any existing image
+  const oldImg = ctr.querySelector('img');
   if (oldImg) oldImg.remove();
-
   if (fallbackDiv) fallbackDiv.style.display = 'flex';
 
-  // Attempt chain: primary → fallback → fallback without crossorigin → give up
-  let attempts = [primaryUrl];
+  const attempts = [primaryUrl];
   if (fallbackUrl) attempts.push(fallbackUrl);
-
   let attemptIdx = 0;
 
   function tryLoad() {
     if (attemptIdx >= attempts.length) {
-      // All attempts failed — show placeholder
       if (fallbackDiv) {
-        fallbackDiv.style.display = 'flex';
         fallbackDiv.innerHTML = `
           <div style="font-size:2.5rem;">☀️</div>
           <div style="font-size:0.88rem;color:var(--text-secondary);">Image could not load</div>
           <a href="${primaryUrl}" target="_blank" rel="noopener"
              style="font-size:0.78rem;color:var(--cyan);text-decoration:none;margin-top:4px;">
             Open image directly →
-          </a>
-          <div style="font-size:0.7rem;color:var(--text-muted);margin-top:4px;">
-            Some browsers block cross-origin images from local files.<br>
-            Try hosting the dashboard or viewing images at the link above.
-          </div>`;
+          </a>`;
+        fallbackDiv.style.display = 'flex';
       }
       return;
     }
 
     const img = document.createElement('img');
-    img.id = 'sunImage';
-    img.alt = 'Solar Image';
+    img.alt = tab.dataset.label || 'Solar Image';
     img.referrerPolicy = 'no-referrer';
     img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:none;';
+    // Cache bust to get latest
+    img.src = attempts[attemptIdx] + '?t=' + Date.now();
 
-    img.onload = function() {
+    img.onload = () => {
       img.style.display = 'block';
       if (fallbackDiv) fallbackDiv.style.display = 'none';
     };
-    img.onerror = function() {
+    img.onerror = () => {
       img.remove();
       attemptIdx++;
-      // If first attempt failed with crossorigin, retry same URL without it
-      if (attemptIdx === 1 && !fallbackUrl) {
-        const img2 = document.createElement('img');
-        img2.id = 'sunImage';
-        img2.alt = 'Solar Image';
-        img2.referrerPolicy = 'no-referrer';
-        img2.style.cssText = 'width:100%;height:100%;object-fit:cover;display:none;';
-        img2.onload = function() { img2.style.display='block'; if(fallbackDiv) fallbackDiv.style.display='none'; };
-        img2.onerror = function() { img2.remove(); attemptIdx++; tryLoad(); };
-        ctr.insertBefore(img2, fallbackDiv);
-        img2.src = primaryUrl;
-        return;
-      }
       tryLoad();
     };
 
     ctr.insertBefore(img, fallbackDiv);
-    img.src = attempts[attemptIdx];
   }
 
   tryLoad();
 }
 
-// Load the first image on init
-function initSunImage() {
-  const firstTab = document.querySelector('.image-tab.active');
-  if (firstTab) switchSunImage(firstTab);
+// Load geospace image with cache bust
+function loadGeospace() {
+  const img = document.getElementById('geospaceImg');
+  if (img) {
+    img.src = `${NOAA}/images/geospace/geospace_1_day.png?t=${Date.now()}`;
+  }
 }
 
-// Clear any remaining skeleton loaders when offline
+// Clear skeletons if offline
 function clearSkeletons() {
   document.querySelectorAll('.skeleton').forEach(el => {
     const parent = el.parentElement;
     if (parent) {
-      if (parent.classList.contains('card-value') || parent.classList.contains('scale-level')) {
-        parent.textContent = '—';
-        parent.style.color = 'var(--text-muted)';
-      } else {
-        el.outerHTML = '<div class="error-state" style="padding:14px;">Data temporarily unavailable — will retry on next refresh</div>';
-      }
+      el.outerHTML = '<div class="error-state" style="padding:14px;">Data loads when opened in browser</div>';
     }
   });
 }
 
+// ═══════════════════════════════════════════════════
+// REFRESH
+// ═══════════════════════════════════════════════════
 async function refreshAll() {
   const btn = document.getElementById('refreshBtn');
   btn.classList.add('loading');
   fetchSuccessCount = 0;
 
-  // Refresh sun image
+  // Refresh solar image
   const tab = document.querySelector('.image-tab.active');
   if (tab) switchSunImage(tab);
 
-  await Promise.allSettled([fetchScales(),fetchSolarWind(),fetchFlux(),fetchKpChart(),fetchWindChart(),fetchNASAEvents(),fetchAlerts()]);
+  // Refresh geospace
+  loadGeospace();
 
-  // If zero fetches succeeded, show the connection banner
+  await Promise.allSettled([
+    fetchScales(),
+    fetchSolarWind(),
+    fetchFlux(),
+    fetchKpChart(),
+    fetchWindChart(),
+    fetchNASAEvents(),
+    fetchAlerts()
+  ]);
+
   setConnectionStatus(fetchSuccessCount > 0);
-
-  // Always clear any remaining skeletons (handles partial failures)
-  clearSkeletons();
+  if (fetchSuccessCount === 0) clearSkeletons();
 
   document.getElementById('lastUpdated').textContent = fetchSuccessCount > 0
     ? formatUTC(new Date())
@@ -1643,10 +1455,12 @@ async function refreshAll() {
 }
 
 let resizeTimer;
-window.addEventListener('resize', ()=>{ clearTimeout(resizeTimer); resizeTimer=setTimeout(()=>{fetchKpChart();fetchWindChart();},250); });
+window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { fetchKpChart(); fetchWindChart(); }, 250); });
 
-initTheme();
-initSunImage();
+// Init
+const firstTab = document.querySelector('.image-tab.active');
+if (firstTab) switchSunImage(firstTab);
+loadGeospace();
 refreshAll();
 autoRefreshInterval = setInterval(refreshAll, 300000);
 </script>
