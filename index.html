@@ -214,15 +214,42 @@ if(bz===null){bzEl.textContent='\u2014';bzEl.style.color='var(--text-muted)'}els
 document.getElementById('bzDesc').textContent=bt!==null?'nT \u00b7 Bt: '+bt.toFixed(1)+' nT \u00b7 '+(bz!==null&&bz<0?'Southward (geo-effective)':'Northward (quiet)'):'nT \u2014 Interplanetary Magnetic Field'}
 
 async function fetchFlux(){
-// Use 30-day time-series (reliable) instead of summary endpoint (broken)
-const d=await sf(NOAA+'/products/10cm-flux-30-day.json');
-const el=document.getElementById('fluxValue');
-if(!d||!Array.isArray(d)||d.length<2){el.textContent='\u2014';el.style.color='var(--text-muted)';return}fsc++;
-let v=null;for(let i=d.length-1;i>0;i--){const f=parseFloat(d[i][1]);if(!isNaN(f)&&f>0){v=f;break}}
-if(v===null){el.textContent='\u2014';el.style.color='var(--text-muted)'}else{el.textContent=Math.round(v);el.style.color='';el.style.fontSize=''}}
+const el=document.getElementById('fluxValue');let v=null;
+// Primary: /json/ endpoint (22K, object format)
+const d1=await sf(NOAA+'/json/f107_cm_flux.json');
+if(d1&&Array.isArray(d1)&&d1.length>0){fsc++;
+for(let i=d1.length-1;i>=Math.max(0,d1.length-5);i--){const row=d1[i];
+const f=parseFloat(row.flux||row.Flux||row.f107||row.observed_flux||row.value||(Array.isArray(row)?row[1]:NaN));
+if(!isNaN(f)&&f>0){v=f;break}}
+if(v===null)console.log('Flux /json/ last 2 rows:',JSON.stringify(d1.slice(-2)))}
+// Fallback: /products/ endpoint (1K)
+if(v===null){const d2=await sf(NOAA+'/products/10cm-flux-30-day.json');
+if(d2&&Array.isArray(d2)&&d2.length>1){if(!fsc)fsc++;
+console.log('Flux /products/ row[0]:',JSON.stringify(d2[0]),'last:',JSON.stringify(d2[d2.length-1]));
+for(let i=d2.length-1;i>0;i--){const row=d2[i];
+const f=parseFloat(Array.isArray(row)?row[1]:row.flux||row.Flux||row.f107||row.value);
+if(!isNaN(f)&&f>0){v=f;break}}}}
+if(v!==null){el.textContent=Math.round(v);el.style.color='';el.style.fontSize=''}
+else{el.textContent='\u2014';el.style.color='var(--text-muted)'}}
 
-async function fetchKp(){const d=await sf(NOAA+'/products/noaa-planetary-k-index.json');if(!d||!Array.isArray(d)||d.length<2)return;fsc++;const rows=d.slice(1);let kp=0;
-if(rows.length){const raw=parseFloat(rows[rows.length-1][1]);kp=isNaN(raw)?0:raw}// FIX: NaN guard
+async function fetchKp(){let kp=null;
+// Primary: /json/ endpoint (27K, detailed, object format)
+const d1=await sf(NOAA+'/json/planetary_k_index_1m.json');
+if(d1&&Array.isArray(d1)&&d1.length>1){fsc++;
+for(let i=d1.length-1;i>=Math.max(0,d1.length-20);i--){const row=d1[i];
+const v=parseFloat(row.kp_index||row.Kp||row.kp||(Array.isArray(row)?row[1]:NaN));
+if(!isNaN(v)&&v>0){kp=v;break}}
+if(kp===null)console.log('Kp /json/ data sample:',d1.slice(-3))}
+// Fallback: /products/ endpoint (2.7K)
+if(kp===null){const d2=await sf(NOAA+'/products/noaa-planetary-k-index.json');
+if(d2&&Array.isArray(d2)&&d2.length>2){if(!fsc)fsc++;const rows=d2.slice(1);
+// Log the column headers and last 3 rows to see exact format
+console.log('Kp /products/ headers:',d2[0],'last 3 rows:',rows.slice(-3));
+// Try every column for a numeric Kp value
+for(let i=rows.length-1;i>=Math.max(0,rows.length-20);i--){const row=rows[i];
+for(let c=1;c<row.length;c++){const v=parseFloat(row[c]);if(!isNaN(v)&&v>0.1&&v<=9){kp=v;break}}
+if(kp!==null)break}}}
+if(kp===null)kp=0;
 document.getElementById('kpValue').textContent=kp.toFixed(1);document.getElementById('kpValue').style.color=kpColor(kp);document.getElementById('kpBar').style.width=(kp/9*100)+'%';document.getElementById('kpBar').style.background=kpColor(kp);const ds={0:'Quiet',1:'Quiet',2:'Quiet',3:'Unsettled',4:'Active',5:'Minor storm',6:'Moderate storm',7:'Strong storm',8:'Severe storm',9:'Extreme storm'};document.getElementById('kpDesc').textContent=ds[Math.floor(kp)]||'Geomagnetic activity'}
 
 async function fetchEvents(){const c=document.getElementById('nasaEvents');const end=new Date().toISOString().split('T')[0];const start=new Date(Date.now()-7*864e5).toISOString().split('T')[0];const[cm,fl]=await Promise.all([sf(NASA+'/CME?startDate='+start+'&endDate='+end+'&api_key='+NK),sf(NASA+'/FLR?startDate='+start+'&endDate='+end+'&api_key='+NK)]);const ca=Array.isArray(cm)?cm:[];const fa=Array.isArray(fl)?fl:[];if(!ca.length&&!fa.length&&cf){c.innerHTML='<div class="error-state">Download and open in browser</div>';return}let e=[];ca.forEach(x=>e.push({t:'CME',d:x.startTime||x.activityID,n:x.note||'Speed: '+(x.cmeAnalyses?.[0]?.speed||'\u2014')+' km/s'}));fa.forEach(x=>e.push({t:'Flare',d:x.beginTime||x.flrID,n:'Class '+(x.classType||'\u2014')+' \u00b7 '+(x.sourceLocation||'')}));e.sort((a,b)=>new Date(b.d)-new Date(a.d));if(!e.length){c.innerHTML='<div class="error-state">No events in past 7 days</div>';return}c.innerHTML=e.slice(0,12).map(x=>'<div class="event-item"><span class="event-type '+(x.t==='CME'?'cme':'flare')+'">'+x.t+'</span><span style="color:var(--text-muted);margin-left:8px;font-size:.65rem">'+x.d+'</span><div style="color:var(--text-secondary);margin-top:5px;line-height:1.5">'+x.n+'</div></div>').join('')}
