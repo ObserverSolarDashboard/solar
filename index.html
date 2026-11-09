@@ -215,12 +215,28 @@ async function loadKp(){
   S.kp = { now: now ? now.v : (last3 ? last3.v : null), t: now ? now.t : last3?.t,
            hist: k3.slice(-16).map(r => num(r.Kp ?? r.kp)) };
 }
+// Real-time solar wind (RTSW). NOAA retired /products/solar-wind/*.json in 2026 (SCN 26-21);
+// the replacements carry several spacecraft, flagged with "source" and "active".
+function rtsw(data){
+  let a = rows(data);
+  const act = a.filter(r => r.active === true || r.active === 'true');
+  if (act.length) a = act;
+  a = a.slice().sort((x, y) => String(x.time_tag).localeCompare(String(y.time_tag)));
+  const seen = new Set();           // one reading per minute
+  return a.filter(r => (seen.has(r.time_tag) ? false : (seen.add(r.time_tag), true)));
+}
 async function loadWind(){
-  const p = rows(await getJSON(SWPC + '/products/solar-wind/plasma-1-day.json'));
-  const m = rows(await getJSON(SWPC + '/products/solar-wind/mag-1-day.json'));
-  const sp = lastValid(p, 'speed'), de = lastValid(p, 'density'), bz = lastValid(m, 'bz_gsm'), bt = lastValid(m, 'bt');
-  S.wind = { speed: sp?.v, density: de?.v, t: sp?.t, sHist: downsample(p.slice(-360).map(r => num(r.speed)), 60) };
-  S.mag  = { bz: bz?.v, bt: bt?.v, t: bz?.t, hist: downsample(m.slice(-360).map(r => num(r.bz_gsm)), 60) };
+  const p = rtsw(await getJSON(SWPC + '/json/rtsw/rtsw_wind_1m.json'));
+  const spKey = 'proton_speed' in (p[p.length-1] || {}) ? 'proton_speed' : 'speed';
+  const deKey = 'proton_density' in (p[p.length-1] || {}) ? 'proton_density' : 'density';
+  const sp = lastValid(p, spKey), de = lastValid(p, deKey);
+  S.wind = { speed: sp?.v, density: de?.v, t: sp?.t, src: p[p.length-1]?.source,
+             sHist: downsample(p.slice(-360).map(r => num(r[spKey])), 60) };
+}
+async function loadMag(){
+  const m = rtsw(await getJSON(SWPC + '/json/rtsw/rtsw_mag_1m.json'));
+  const bz = lastValid(m, 'bz_gsm'), bt = lastValid(m, 'bt');
+  S.mag = { bz: bz?.v, bt: bt?.v, t: bz?.t, hist: downsample(m.slice(-360).map(r => num(r.bz_gsm)), 60) };
 }
 async function loadXray(){
   const x = (await getJSON(SWPC + '/json/goes/primary/xrays-6-hour.json')).filter(r => r.energy === '0.1-0.8nm');
@@ -280,7 +296,7 @@ function renderTiles(){
 
   if (S.wind){ const L = lvl.speed(S.wind.speed); add(L, `solar wind ${Math.round(S.wind.speed)} km/s`);
     out.push(tile('Solar wind speed', S.wind.speed != null ? Math.round(S.wind.speed) : '—', 'km/s', L,
-      `Density ${S.wind.density != null ? S.wind.density.toFixed(1) : '—'} p/cm³ · ${ago(S.wind.t)}`, spark(S.wind.sHist))); }
+      `Density ${S.wind.density != null ? S.wind.density.toFixed(1) : '—'} p/cm³ · ${ago(S.wind.t)}${S.wind.src ? ' · ' + esc(S.wind.src) : ''}`, spark(S.wind.sHist))); }
   else out.push(tile('Solar wind speed', '—', '', -1, '<span class="err">unavailable</span>'));
 
   if (S.mag){ const L = lvl.bz(S.mag.bz); add(L, `Bz ${S.mag.bz?.toFixed(1)} nT`);
@@ -398,7 +414,7 @@ let nextAt = 0, busy = false;
 async function refreshAll(){
   if (busy) return; busy = true;
   const btn = $('refreshBtn'); btn.disabled = true; btn.textContent = 'Refreshing…';
-  const jobs = {kp:loadKp, wind:loadWind, xray:loadXray, proton:loadProtons, scales:loadScales, alerts:loadAlerts,
+  const jobs = {kp:loadKp, wind:loadWind, mag:loadMag, xray:loadXray, proton:loadProtons, scales:loadScales, alerts:loadAlerts,
                 kpf:loadKpForecast, ftext:loadForecastText, regions:loadRegions, cmes:loadCMEs, feed:loadFeed};
   await Promise.all(Object.entries(jobs).map(([k, fn]) => fn().catch(e => { console.warn(k, e); })));
   try { renderTiles(); } catch(e){ console.error(e); }
