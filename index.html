@@ -30,7 +30,33 @@ button:disabled{opacity:.6;cursor:wait}
 .banner .lvl{background:var(--c)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
 .tile{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:12px;padding:12px 14px;min-height:122px}
-.tile .k{color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.05em}
+.tile{display:block;width:100%;text-align:left;font:inherit;color:var(--text);cursor:pointer;position:relative;transition:transform .12s,box-shadow .12s}
+.tile:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.tile:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tile .info{position:absolute;top:9px;right:10px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--muted);color:var(--muted);font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;font-style:normal}
+.tile .k{color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;padding-right:24px}
+.hint{color:var(--muted);font-size:.9rem;margin:0 0 8px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.hint button{background:none;color:var(--link);padding:0;font-weight:600;font-size:.9rem}
+.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 14px}
+@media(max-width:820px){.chain{grid-template-columns:1fr 1fr}}
+.chain div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.88rem}
+.chain b{display:block;font-size:.95rem;margin-bottom:2px}
+.chain .when{display:block;margin-top:6px;font-size:.75rem;font-weight:700;color:var(--accent)}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);padding:0;width:min(640px,calc(100vw - 24px));max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+dialog .dh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 18px 10px;border-bottom:1px solid var(--line)}
+dialog .dh h3{margin:0;font-size:1.25rem}
+dialog .close{background:var(--chip);color:var(--text);padding:6px 12px}
+dialog .db{padding:14px 18px 18px;overflow:auto}
+dialog .now{display:flex;align-items:center;gap:12px;background:var(--panel2);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:10px;padding:10px 12px;margin-bottom:14px}
+dialog .now .big{font-size:1.6rem;font-weight:800}
+dialog h4{margin:14px 0 4px;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+dialog p{margin:0 0 6px}
+.lv td:first-child{width:118px;white-space:nowrap}
+.lv .sw{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);margin-right:6px}
+.lv tr.cur td{background:var(--panel2);font-weight:600}
+.lv tr.cur td:first-child{box-shadow:inset 4px 0 0 var(--c)}
+.lv .you{font-size:.7rem;font-weight:800;color:var(--accent);margin-left:6px}
 .tile .v{font-size:2rem;font-weight:800;line-height:1.15;margin:2px 0}
 .tile .v small{font-size:.9rem;font-weight:600;color:var(--muted)}
 .tile .d{color:var(--muted);font-size:.82rem}
@@ -82,7 +108,15 @@ footer{color:var(--muted);font-size:.82rem;margin-top:22px;line-height:1.6}
 
 <div id="banner" class="banner lx"><span class="lvl">…</span><span class="why">Loading live data from NOAA and NASA…</span></div>
 
+<p class="hint"><span>Tap any card to see what it measures, why it matters and the threat levels.</span><button type="button" id="chainToggle" aria-expanded="false">How a solar storm reaches Earth ▾</button></p>
+<div class="chain" id="chain" hidden>
+  <div><b>1 · Flare</b>A burst of X-rays from a sunspot. Disrupts radio on Earth's day side at once.<span class="when">Arrives in 8 minutes · no warning</span></div>
+  <div><b>2 · Radiation</b>Big flares can fling high-energy protons toward Earth. Mainly a risk to satellites, astronauts and polar flights.<span class="when">20 minutes to a few hours</span></div>
+  <div><b>3 · CME launch</b>A cloud of magnetized plasma may leave the Sun with the flare. NASA models whether and when it hits Earth (see Incoming).<span class="when">Arrives in 1–3 days · your warning window</span></div>
+  <div><b>4 · Impact</b>Solar wind speed jumps; if Bz turns south, energy pours in and Kp climbs — the geomagnetic storm.<span class="when">Final 15–60 min warning from L1 satellites</span></div>
+</div>
 <div class="tiles" id="tiles"></div>
+<dialog id="infoDlg" aria-labelledby="infoTitle"><div class="dh"><div><h3 id="infoTitle"></h3><div id="infoSub" class="t" style="color:var(--muted);font-size:.85rem"></div></div><button type="button" class="close" id="infoClose">Close</button></div><div class="db" id="infoBody"></div></dialog>
 
 <div class="grid2">
   <div class="card"><h2>Official alerts <span class="tag meas">MEASURED · NOAA</span></h2><ul class="list" id="alerts"></ul></div>
@@ -264,14 +298,104 @@ async function loadFeed(){
 }
 
 /* ===== Renderers ===== */
+/* ===== Card explanations ===== */
+const INFO = {
+  kp: { title:'Geomagnetic activity (Kp index)', sub:'NOAA · planetary K-index, 0–9, from magnetometers worldwide',
+    what:'How strongly Earth\'s magnetic field is being shaken right now. Kp is measured on a 0–9 scale every 3 hours from ground stations around the world; this card shows the 1-minute estimate.',
+    why:'This is the storm itself. High Kp drives electric currents into power lines and pipelines, degrades GPS and HF radio, adds drag on satellites, and pushes the aurora toward the equator.',
+    levels:[
+      [0,'0–3','Quiet','Normal conditions.'],
+      [1,'4','Unsettled','Active but no storm. Aurora near the Arctic.'],
+      [2,'5 (G1)','Minor storm','Weak power-grid fluctuations; aurora in Canada and northern Michigan/Maine.'],
+      [2,'6 (G2)','Moderate storm','Voltage alarms on high-latitude grids; HF radio fades at high latitudes.'],
+      [3,'7 (G3)','Strong storm','Grid voltage corrections needed; GPS and satellite navigation errors; aurora to Illinois/Oregon.'],
+      [3,'8 (G4)','Severe storm','Widespread voltage problems; aurora possibly visible in Northern California.'],
+      [3,'9 (G5)','Extreme storm','Grid collapse and transformer damage possible; aurora to Florida/Texas. Rare (about 4 per 11-year cycle).']],
+    level: v => v == null ? -1 : v < 4 ? 0 : v < 5 ? 1 : v < 5.5 ? 2 : v < 6.5 ? 3 : v < 7.5 ? 4 : v < 8.5 ? 5 : 6, rowMode:true },
+  wind: { title:'Solar wind speed', sub:'NOAA RTSW · measured by DSCOVR/ACE at the L1 point, 1.5 million km sunward',
+    what:'How fast the stream of charged particles from the Sun is moving as it passes a satellite about an hour upstream of Earth. Normal is 300–400 km/s.',
+    why:'Faster wind carries more energy into Earth\'s magnetic field. A sudden jump (a "shock") usually means a CME has arrived. Because the satellite sits upstream, this is your final 15–60 minute warning before impact.',
+    levels:[
+      [0,'Under 450','Normal','Typical slow solar wind.'],
+      [1,'450–600','Elevated','Often a coronal-hole stream. Minor storms possible if Bz turns south.'],
+      [2,'600–800','High','Fast stream or CME. Storms likely when Bz is south.'],
+      [3,'Over 800','Extreme','Powerful CME. Strong to severe storms possible within the hour.']],
+    level: v => lvl.speed(v) },
+  bz: { title:'Magnetic field direction (Bz)', sub:'NOAA RTSW · north–south part of the Sun\'s magnetic field in the solar wind',
+    what:'Whether the magnetic field carried by the solar wind points north (positive) or south (negative), measured in nanotesla (nT).',
+    why:'Bz is the gate. When it points south it links up with Earth\'s field and lets the solar wind\'s energy in; when it points north most of the energy bounces off. A fast wind with strong southward Bz held for hours is the classic recipe for a big storm.',
+    levels:[
+      [0,'Above −5','Calm','North or weakly south; little energy gets in.'],
+      [1,'−5 to −10','Watch','Moderately south; minor storming possible if it persists.'],
+      [2,'−10 to −20','Active','Strongly south; geomagnetic storm likely, especially with fast wind.'],
+      [3,'Below −20','Severe','Very strongly south. If sustained for hours, strong or severe storms.']],
+    level: v => lvl.bz(v) },
+  xray: { title:'X-ray flux (flare level)', sub:'NOAA GOES satellites · 0.1–0.8 nm X-rays',
+    what:'The brightness of X-rays from the Sun. Flares are graded A, B, C, M and X; each letter is 10× stronger than the one before, and the number scales within it (M5 is five times M1).',
+    why:'X-rays travel at the speed of light, so a flare\'s radio effects hit Earth\'s sunlit side 8 minutes after it happens, with no warning. Big flares are also the starting gun: they often launch a CME and radiation storm that arrive later.',
+    levels:[
+      [0,'A, B, C','Background','Low to common activity; no significant effects.'],
+      [1,'M1–M4 (R1)','Minor flare','Brief HF radio fade on the sunlit side; watch for a CME.'],
+      [2,'M5–X9 (R2–R3)','Strong flare','Wide HF radio blackouts for up to an hour; low-frequency navigation errors. Check Incoming for a CME.'],
+      [3,'X10+ (R4–R5)','Extreme flare','Hours-long HF blackout across the sunlit side. Very likely to be followed by radiation and a major CME.']],
+    level: v => lvl.xray(v) },
+  proton: { title:'High-energy protons (≥10 MeV)', sub:'NOAA GOES satellites · particle flux in pfu',
+    what:'How many high-energy protons from the Sun are hitting the satellites (particles per cm² per second per steradian, "pfu"). Normal is below 10.',
+    why:'A solar radiation storm. These particles damage satellite electronics, endanger astronauts, raise radiation doses on polar flights, and black out radio over the poles. They arrive 20 minutes to a few hours after a big flare and can last days.',
+    levels:[
+      [0,'Under 10','Normal','No radiation storm.'],
+      [1,'10–99 (S1)','Minor','Small effects on polar HF radio.'],
+      [2,'100–9,999 (S2–S3)','Moderate–Strong','Polar flights may reroute; satellite upsets; astronaut precautions.'],
+      [3,'10,000+ (S4–S5)','Severe–Extreme','Radiation hazard to astronauts and high-altitude passengers; satellites may be damaged or lost.']],
+    level: v => lvl.proton(v) },
+  scales: { title:'NOAA space weather scales', sub:'NOAA SWPC · official R, S and G ratings, 1–5',
+    what:'NOAA\'s official summary of current conditions, like a hurricane category. R = Radio blackouts (from flares), S = Solar radiation storms (protons), G = Geomagnetic storms (Kp). 0 means none; 5 is extreme.',
+    why:'These ratings are what governments, airlines, power companies and satellite operators act on, so they\'re the clearest sign of real-world impact.',
+    levels:[
+      [0,'0','None','No significant space weather.'],
+      [1,'1','Minor','Minor effects; usually not noticed by the public.'],
+      [2,'2–3','Moderate–Strong','Operators take precautions; some radio, GPS or grid effects.'],
+      [3,'4–5','Severe–Extreme','Widespread effects on grids, satellites, navigation and communications.']],
+    level: v => lvl.scale(v) }
+};
+const KEY_BY_LABEL = {'Geomagnetic (Kp)':'kp','Solar wind speed':'wind','Magnetic field Bz':'bz','X-ray (flare level)':'xray','Protons ≥10 MeV':'proton','NOAA scales now':'scales'};
+const RAW = {};   // raw numeric reading per card for the explainer
+const TS = {};    // what each card currently shows
+
+function openInfo(key){
+  const I = INFO[key]; if (!I) return;
+  const t = TS[key] || {};
+  const raw = RAW[key];
+  const idx = raw == null ? -1 : I.level(raw);          // row index in the table
+  const L = t.level ?? -1;
+  $('infoTitle').textContent = I.title;
+  $('infoSub').textContent = I.sub;
+  const rowsHtml = I.levels.map((r, i) => {
+    const cur = I.rowMode ? i === idx : r[0] === L;
+    return `<tr class="l${r[0]}${cur ? ' cur' : ''}"><td><span class="sw"></span>${esc(r[1])}</td><td><strong>${esc(r[2])}</strong>${cur ? '<span class="you">◀ NOW</span>' : ''}<br><span style="color:var(--muted)">${esc(r[3])}</span></td></tr>`;
+  }).join('');
+  $('infoBody').innerHTML = `
+    <div class="now ${L < 0 ? 'lx' : 'l' + L}"><span class="big">${t.value ?? '—'}${t.unit ? ' <small style="font-size:.9rem;color:var(--muted)">' + esc(t.unit) + '</small>' : ''}</span>
+      <span>${L < 0 ? 'No current reading' : 'Current level: <strong>' + LEVEL_NAMES[L] + '</strong>'}<br><span style="color:var(--muted);font-size:.85rem">${t.detail || ''}</span></span></div>
+    <h4>What it measures</h4><p>${esc(I.what)}</p>
+    <h4>Why it matters</h4><p>${esc(I.why)}</p>
+    <h4>Threat levels</h4><table class="lv"><tbody>${rowsHtml}</tbody></table>`;
+  const d = $('infoDlg'); if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+}
+
 function tile(label, value, unit, level, detail, sparkSvg){
+  const key = KEY_BY_LABEL[label];
+  if (key) TS[key] = {value, unit, level, detail};
   const cls = level < 0 ? 'lx' : 'l' + level;
-  return `<div class="tile ${cls}"><div class="k">${esc(label)}</div>
+  return `<button type="button" class="tile ${cls}" data-key="${key || ''}" aria-label="${esc(label)}: ${esc(value)} ${esc(unit || '')}. Tap for details."><i class="info" aria-hidden="true">i</i><div class="k">${esc(label)}</div>
     <div class="v">${value}${unit ? ` <small>${esc(unit)}</small>` : ''}</div>
-    <div class="d">${detail || ''}</div>${sparkSvg || ''}</div>`;
+    <div class="d">${detail || ''}</div>${sparkSvg || ''}</button>`;
 }
 function renderTiles(){
   const out = [], reasons = [];
+  RAW.kp = S.kp?.now ?? null; RAW.wind = S.wind?.speed ?? null; RAW.bz = S.mag?.bz ?? null;
+  RAW.xray = S.xray?.flux ?? null; RAW.proton = S.proton?.flux ?? null;
+  { const n = S.scales?.['0']; RAW.scales = n ? Math.max(num(n.R?.Scale) ?? 0, num(n.S?.Scale) ?? 0, num(n.G?.Scale) ?? 0) : null; }
   const add = (lv, why) => reasons.push({lv, why});
 
   if (S.kp){ const L = lvl.kp(S.kp.now); add(L, `Kp ${S.kp.now?.toFixed(1)}`);
@@ -419,6 +543,11 @@ function tick(){
   if (s === 0) refreshAll();
 }
 $('refreshBtn').addEventListener('click', refreshAll);
+$('tiles').addEventListener('click', e => { const t = e.target.closest('.tile'); if (t && t.dataset.key) openInfo(t.dataset.key); });
+$('infoClose').addEventListener('click', () => $('infoDlg').close());
+$('infoDlg').addEventListener('click', e => { if (e.target === $('infoDlg')) $('infoDlg').close(); });
+$('chainToggle').addEventListener('click', e => { const c = $('chain'), open = c.hidden; c.hidden = !open;
+  e.currentTarget.setAttribute('aria-expanded', open); e.currentTarget.textContent = 'How a solar storm reaches Earth ' + (open ? '▴' : '▾'); });
 document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() > nextAt) refreshAll(); });
 setInterval(tick, 1000);
 refreshAll();
