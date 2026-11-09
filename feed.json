@@ -1,0 +1,19 @@
+{
+  "updated": "2026-11-08T00:00:00Z",
+  "sources": [
+    {"id": "sunweatherman", "name": "Ben Davidson — Space Weather News", "handle": "@SunWeatherMan", "url": "https://x.com/SunWeatherMan", "lane": "WATCHER", "focus": "Daily solar watch, CME impact calls, Disaster Cycle, micronova",
+     "links": [{"label": "YouTube", "url": "https://www.youtube.com/@Suspicious0bservers"}, {"label": "Website", "url": "https://www.spaceweathernews.com"}, {"label": "Disaster Cycle", "url": "https://disastercycle.film"}]},
+    {"id": "ethicalskeptic", "name": "Roger — The Ethical Skeptic (ECDO)", "handle": "@EthicalSkeptic", "url": "https://x.com/EthicalSkeptic", "lane": "THEORY", "focus": "ECDO theory, Tau/Indigo Point indicators",
+     "links": [{"label": "Blog", "url": "https://theethicalskeptic.com"}, {"label": "Substack", "url": "https://theethicalskeptic.substack.com"}]},
+    {"id": "nobulart", "name": "Craig Stone", "handle": "@nobulart", "url": "https://x.com/nobulart", "lane": "WATCHER", "focus": "Pole shift / ECDO research", "links": []},
+    {"id": "sachariaspro", "name": "Zacharias", "handle": "@sachariaspro", "url": "https://x.com/sachariaspro", "lane": "WATCHER", "focus": "ECDO and Earth-change commentary", "links": []},
+    {"id": "kitsune_in_va", "name": "Tami", "handle": "@kitsune_in_va", "url": "https://x.com/kitsune_in_va", "lane": "WATCHER", "focus": "Solar and Earth-change monitoring", "links": []},
+    {"id": "stephXskystory", "name": "Stephanie Buchanan", "handle": "@stephXskystory", "url": "https://x.com/stephXskystory", "lane": "WATCHER", "focus": "Sky and solar observation", "links": []},
+    {"id": "havenboundco", "name": "Havenbound", "handle": "@havenboundco", "url": "https://x.com/havenboundco", "lane": "WATCHER", "focus": "Preparedness notes", "links": []},
+    {"id": "ecdomonitor", "name": "ECDO Monitor", "handle": "(handle not confirmed)", "url": "https://x.com/search?q=ECDOMonitor&f=live", "lane": "THEORY", "focus": "ECDO indicator charts", "links": []},
+    {"id": "sunfellow", "name": "David Sunfellow — Pole Shift News", "handle": "", "url": "https://www.sunfellow.com/magnetic-pole-shift/", "lane": "WATCHER", "focus": "Curated pole-shift updates",
+     "links": [{"label": "Rumble", "url": "https://rumble.com/playlists/GbpFmMmx5ng"}]}
+  ],
+  "items": [],
+  "predictions": []
+}
