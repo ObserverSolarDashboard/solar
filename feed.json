@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T07:40:14Z",
+  "updated": "2026-11-13T15:40:34Z",
   "sources": [
     {
       "id": "sunweatherman",
@@ -113,6 +113,30 @@
   "items": [
     {
       "source": "sunweatherman",
+      "date": "2026-11-12T12:00:00Z",
+      "headline": "Two Major Atmospheric Changes, Record Shattered (S0 News Nov.12.2026)",
+      "summary": "Daily episode in which Davidson reports two major atmospheric changes and a broken record, per the title. NOAA reporting for the period shows only M-class flares from AR4566 and no Earth-directed CME.",
+      "link": "https://www.youtube.com/watch?v=rzXQMt8pRiM",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
+      "date": "2026-11-10T12:00:00Z",
+      "headline": "The Super-Drought, Cosmic Health Impact (S0 News Nov.10.2026)",
+      "summary": "Daily episode in which Davidson discusses a so-called super-drought and claims cosmic influences on human health, per the title; no detailed description was available.",
+      "link": "https://www.youtube.com/watch?v=elMa6KX7LNs",
+      "verified": "n/a"
+    },
+    {
+      "source": "ethicalskeptic",
+      "date": "2026-11-07T00:44:53Z",
+      "headline": "Says ECDO theory is being overlooked",
+      "summary": "Posted that he finds it hard to understand why ECDO theory has not yet been examined, calling the case for it obvious. The post's full context was not visible in search results.",
+      "link": "https://x.com/EthicalSkeptic/status/2118867248941297894",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
       "date": "2026-11-03T12:00:00Z",
       "headline": "Pole Shift Hits Plants, EM Solver Update (S0 News Nov.3.2026)",
       "summary": "Most recent dated episode found. The title points to claimed pole-shift effects on plant life and an update to his electromagnetic modeling work; no episode description was available.",
@@ -128,30 +152,6 @@
       "verified": "n/a"
     },
     {
-      "source": "ethicalskeptic",
-      "date": "2026-11-07T00:44:53Z",
-      "headline": "Says ECDO theory is being overlooked",
-      "summary": "Posted that he finds it hard to understand why ECDO theory has not yet been examined, calling the case for it obvious. The post's full context was not visible in search results.",
-      "link": "https://x.com/EthicalSkeptic/status/2118867248941297894",
-      "verified": "n/a"
-    },
-    {
-      "source": "ethicalskeptic",
-      "date": "2026-03-27T12:00:00Z",
-      "headline": "Inversion — ECDO Theory",
-      "summary": "Most recent article found by search. Announces a forthcoming work, \"A New Knowledge,\" which he says explains the mechanism behind cataclysm, tradition and climate; check his X feed for newer posts.",
-      "link": "https://theethicalskeptic.substack.com/p/inversion-ecdo-theory",
-      "verified": "n/a"
-    },
-    {
-      "source": "kitsune_in_va",
-      "date": "2026-06-05T06:25:00Z",
-      "headline": "Overview of the 2026 Pole Shift Conference presentations",
-      "summary": "Wrote a summary of Roger Cunningham's and Ben Davidson's conference talks, which David Sunfellow recommended to his followers.",
-      "link": "https://x.com/sunfellow/status/2062782909082415460",
-      "verified": "n/a"
-    },
-    {
       "source": "stephXskystory",
       "date": "2026-10-01T12:00:00Z",
       "headline": "Co-launches the Catastrophism Research Association",
@@ -160,19 +160,19 @@
       "verified": "n/a"
     },
     {
-      "source": "stephXskystory",
-      "date": "2026-08-06T14:30:00Z",
-      "headline": "Comments on Craig Stone's ECDO simulation",
-      "summary": "Says she is watching where Craig Stone's full simulation leads, highlighting its relaxation phase after the forcing period.",
-      "link": "https://x.com/stephXskystory/status/2085373051831812161",
-      "verified": "n/a"
-    },
-    {
       "source": "havenboundco",
       "date": "2026-09-29T11:45:00Z",
       "headline": "Havenbound opens to the public",
       "summary": "Announced public launch after about a year of development; the service produces a safety report for any coordinate on Earth.",
       "link": "https://x.com/havenboundco/status/2104900435744309366",
+      "verified": "n/a"
+    },
+    {
+      "source": "stephXskystory",
+      "date": "2026-08-06T14:30:00Z",
+      "headline": "Comments on Craig Stone's ECDO simulation",
+      "summary": "Says she is watching where Craig Stone's full simulation leads, highlighting its relaxation phase after the forcing period.",
+      "link": "https://x.com/stephXskystory/status/2085373051831812161",
       "verified": "n/a"
     },
     {
@@ -189,6 +189,22 @@
       "headline": "Shares Ben Davidson on deep-ocean heating",
       "summary": "Posted an excerpt in which Davidson claims new evidence that deep oceans are warming sharply.",
       "link": "https://x.com/sunfellow/status/2081425368603595127",
+      "verified": "n/a"
+    },
+    {
+      "source": "kitsune_in_va",
+      "date": "2026-06-05T06:25:00Z",
+      "headline": "Overview of the 2026 Pole Shift Conference presentations",
+      "summary": "Wrote a summary of Roger Cunningham's and Ben Davidson's conference talks, which David Sunfellow recommended to his followers.",
+      "link": "https://x.com/sunfellow/status/2062782909082415460",
+      "verified": "n/a"
+    },
+    {
+      "source": "ethicalskeptic",
+      "date": "2026-03-27T12:00:00Z",
+      "headline": "Inversion — ECDO Theory",
+      "summary": "Most recent article found by search. Announces a forthcoming work, \"A New Knowledge,\" which he says explains the mechanism behind cataclysm, tradition and climate; check his X feed for newer posts.",
+      "link": "https://theethicalskeptic.substack.com/p/inversion-ecdo-theory",
       "verified": "n/a"
     }
   ],
