@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16T19:40:20Z",
+  "updated": "2026-11-17T01:41:25Z",
   "sources": [
     {
       "id": "sunweatherman",
@@ -113,6 +113,14 @@
   "items": [
     {
       "source": "sunweatherman",
+      "date": "2026-11-14T15:57:07Z",
+      "headline": "Davidson predicts an ~X10 flare next year",
+      "summary": "Replying to Bret Weinstein, Ben Davidson predicts the current period ends with a roughly X10 solar flare next year. He claims the world will never be the same afterward.",
+      "link": "https://x.com/SunWeatherMan/status/2121633535698375048",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
       "date": "2026-11-14T12:00:00Z",
       "headline": "How Strong is Global Warming? When Were The Superflares? | S0 News Nov.14.2026",
       "summary": "Ben Davidson's Nov. 14 episode discusses how strong recent global warming is and when past solar superflares are claimed to have occurred. No specific current solar event was claimed.",
@@ -141,14 +149,6 @@
       "headline": "Says ECDO theory is being overlooked",
       "summary": "Posted that he finds it hard to understand why ECDO theory has not yet been examined, calling the case for it obvious. The post's full context was not visible in search results.",
       "link": "https://x.com/EthicalSkeptic/status/2118867248941297894",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-03T12:00:00Z",
-      "headline": "Pole Shift Hits Plants, EM Solver Update (S0 News Nov.3.2026)",
-      "summary": "Most recent dated episode found. The title points to claimed pole-shift effects on plant life and an update to his electromagnetic modeling work; no episode description was available.",
-      "link": "https://www.youtube.com/watch?v=gtstJYYBKxo",
       "verified": "n/a"
     },
     {
@@ -208,5 +208,14 @@
       "verified": "n/a"
     }
   ],
-  "predictions": []
+  "predictions": [
+    {
+      "source": "sunweatherman",
+      "prediction": "An ~X10-class solar flare will occur next year, after which 'the world is never the same'",
+      "made": "2026-11-14",
+      "target": "2027",
+      "status": "Pending",
+      "link": "https://x.com/SunWeatherMan/status/2121633535698375048"
+    }
+  ]
 }
