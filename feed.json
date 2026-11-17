@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T13:35:45Z",
+  "updated": "2026-11-17T19:40:21Z",
   "sources": [
     {
       "id": "sunweatherman",
@@ -113,34 +113,34 @@
   "items": [
     {
       "source": "sunweatherman",
+      "date": "2026-11-17T12:00:00Z",
+      "headline": "Super Flare Forecast & Government Meeting | S0 News Nov.17.2026",
+      "summary": "Davidson discusses a super-flare forecast and a US House committee meeting on space weather, citing research on 'Rieger cycle' solar periodicities. He presents the flare outlook as a forecast; no such flare has been reported by NOAA SWPC.",
+      "link": "https://www.youtube.com/watch?v=bc6nSEOV_6I",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
+      "date": "2026-11-16T12:00:00Z",
+      "headline": "THE 4TH RING APPEARS - Records Crumble | S0 News Nov.16.2026",
+      "summary": "Davidson reports on research describing a transient fourth radiation belt around Earth and claims several space-weather records are being broken.",
+      "link": "https://www.youtube.com/watch?v=af5BHBxbEq4",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
+      "date": "2026-11-15T12:00:00Z",
+      "headline": "Solar Electromagnetic Earth Dance | S0 News Nov.15.2026",
+      "summary": "Davidson reviews studies on how solar particles and solar wind influence Earth's global electric circuit and lightning.",
+      "link": "https://www.youtube.com/watch?v=gzYwpyefO5g",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
       "date": "2026-11-14T15:57:07Z",
       "headline": "Davidson predicts an ~X10 flare next year",
       "summary": "Replying to Bret Weinstein, Ben Davidson predicts the current period ends with a roughly X10 solar flare next year. He claims the world will never be the same afterward.",
       "link": "https://x.com/SunWeatherMan/status/2121633535698375048",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-14T12:00:00Z",
-      "headline": "How Strong is Global Warming? When Were The Superflares? | S0 News Nov.14.2026",
-      "summary": "Ben Davidson's Nov. 14 episode discusses how strong recent global warming is and when past solar superflares are claimed to have occurred. No specific current solar event was claimed.",
-      "link": "https://www.youtube.com/watch?v=4qtKg9bo1sI",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-12T12:00:00Z",
-      "headline": "Two Major Atmospheric Changes, Record Shattered (S0 News Nov.12.2026)",
-      "summary": "Daily episode in which Davidson reports two major atmospheric changes and a broken record, per the title. NOAA reporting for the period shows only M-class flares from AR4566 and no Earth-directed CME.",
-      "link": "https://www.youtube.com/watch?v=rzXQMt8pRiM",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-10T12:00:00Z",
-      "headline": "The Super-Drought, Cosmic Health Impact (S0 News Nov.10.2026)",
-      "summary": "Daily episode in which Davidson discusses a so-called super-drought and claims cosmic influences on human health, per the title; no detailed description was available.",
-      "link": "https://www.youtube.com/watch?v=elMa6KX7LNs",
       "verified": "n/a"
     },
     {
