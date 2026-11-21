@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T01:35:29Z",
+  "updated": "2026-11-21T07:35:45Z",
   "sources": [
     {
       "id": "sunweatherman",
@@ -113,6 +113,22 @@
   "items": [
     {
       "source": "sunweatherman",
+      "date": "2026-11-20T12:00:00Z",
+      "headline": "Solar/Pole Shift Impact: Insects, Plants, Humans | S0 News Nov.20.2026",
+      "summary": "Davidson discusses how he claims solar activity and the ongoing magnetic shift affect insects, plants and people.",
+      "link": "https://www.youtube.com/watch?v=FEn1ymGXMF0",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
+      "date": "2026-11-19T12:00:00Z",
+      "headline": "Magnetic Pole Shift Sky-Sign Confirmation | S0 News Nov.19.2026",
+      "summary": "Davidson reports what he describes as a visible sky sign confirming the magnetic pole shift. Same day, NOAA-level data show only a minor G1 storm from the Nov 14 CME.",
+      "link": "https://www.youtube.com/watch?v=-gf8P-YjrmQ",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
       "date": "2026-11-17T12:00:00Z",
       "headline": "Super Flare Forecast & Government Meeting | S0 News Nov.17.2026",
       "summary": "Davidson discusses a super-flare forecast and a US House committee meeting on space weather, citing research on 'Rieger cycle' solar periodicities. He presents the flare outlook as a forecast; no such flare has been reported by NOAA SWPC.",
@@ -125,22 +141,6 @@
       "headline": "THE 4TH RING APPEARS - Records Crumble | S0 News Nov.16.2026",
       "summary": "Davidson reports on research describing a transient fourth radiation belt around Earth and claims several space-weather records are being broken.",
       "link": "https://www.youtube.com/watch?v=af5BHBxbEq4",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-15T12:00:00Z",
-      "headline": "Solar Electromagnetic Earth Dance | S0 News Nov.15.2026",
-      "summary": "Davidson reviews studies on how solar particles and solar wind influence Earth's global electric circuit and lightning.",
-      "link": "https://www.youtube.com/watch?v=gzYwpyefO5g",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-14T15:57:07Z",
-      "headline": "Davidson predicts an ~X10 flare next year",
-      "summary": "Replying to Bret Weinstein, Ben Davidson predicts the current period ends with a roughly X10 solar flare next year. He claims the world will never be the same afterward.",
-      "link": "https://x.com/SunWeatherMan/status/2121633535698375048",
       "verified": "n/a"
     },
     {
