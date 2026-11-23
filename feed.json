@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T19:35:17Z",
+  "updated": "2026-11-23T01:40:59Z",
   "sources": [
     {
       "id": "sunweatherman",
@@ -113,6 +113,22 @@
   "items": [
     {
       "source": "sunweatherman",
+      "date": "2026-11-22T12:00:00Z",
+      "headline": "The First Gamma Ray Ground Event Recorded | S0 News Nov.22.2026",
+      "summary": "Ben Davidson reports what he describes as the first recorded ground-level gamma-ray event and discusses its significance. This is his interpretation; it is not an NOAA/NASA space-weather alert.",
+      "link": "https://www.youtube.com/watch?v=kFpkAPT-e4A",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
+      "date": "2026-11-21T12:00:00Z",
+      "headline": "Pole Shift History & Today's Collapse | S0 News Nov.21.2026",
+      "summary": "Ben Davidson reviews past geomagnetic pole shifts and argues the present-day magnetic field is weakening along a similar path. He frames this as part of his Disaster Cycle thesis.",
+      "link": "https://www.youtube.com/watch?v=HYTXz5aOj5A",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
       "date": "2026-11-20T12:00:00Z",
       "headline": "Solar/Pole Shift Impact: Insects, Plants, Humans | S0 News Nov.20.2026",
       "summary": "Davidson discusses how he claims solar activity and the ongoing magnetic shift affect insects, plants and people.",
@@ -125,22 +141,6 @@
       "headline": "Magnetic Pole Shift Sky-Sign Confirmation | S0 News Nov.19.2026",
       "summary": "Davidson reports what he describes as a visible sky sign confirming the magnetic pole shift. Same day, NOAA-level data show only a minor G1 storm from the Nov 14 CME.",
       "link": "https://www.youtube.com/watch?v=-gf8P-YjrmQ",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-17T12:00:00Z",
-      "headline": "Super Flare Forecast & Government Meeting | S0 News Nov.17.2026",
-      "summary": "Davidson discusses a super-flare forecast and a US House committee meeting on space weather, citing research on 'Rieger cycle' solar periodicities. He presents the flare outlook as a forecast; no such flare has been reported by NOAA SWPC.",
-      "link": "https://www.youtube.com/watch?v=bc6nSEOV_6I",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-16T12:00:00Z",
-      "headline": "THE 4TH RING APPEARS - Records Crumble | S0 News Nov.16.2026",
-      "summary": "Davidson reports on research describing a transient fourth radiation belt around Earth and claims several space-weather records are being broken.",
-      "link": "https://www.youtube.com/watch?v=af5BHBxbEq4",
       "verified": "n/a"
     },
     {
