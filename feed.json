@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T19:35:04Z",
+  "updated": "2026-11-27T01:41:00Z",
   "sources": [
     {
       "id": "sunweatherman",
@@ -113,6 +113,22 @@
   "items": [
     {
       "source": "sunweatherman",
+      "date": "2026-11-26T12:00:00Z",
+      "headline": "Earth Vulnerability, Micronova Events, Ozone | S0 News Nov.26.2026",
+      "summary": "Ben Davidson discusses a study comparing a recent geomagnetic storm with the May 2024 storm and argues it shows Earth's growing vulnerability. He also ties a new stellar-nebula study to his micronova theory.",
+      "link": "https://www.youtube.com/watch?v=qX51I6YjKds",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
+      "date": "2026-11-25T12:00:00Z",
+      "headline": "Solar Ozone Depletion Event, Mercury Arrival | S0 News Nov.25.2026",
+      "summary": "Ben Davidson reviews a paper on solar storms depleting ozone and covers BepiColombo's arrival at Mercury. He also highlights radio signals from flaring stars and a new Webb result.",
+      "link": "https://www.youtube.com/watch?v=BRSlpC9AoBk",
+      "verified": "n/a"
+    },
+    {
+      "source": "sunweatherman",
       "date": "2026-11-22T12:00:00Z",
       "headline": "The First Gamma Ray Ground Event Recorded | S0 News Nov.22.2026",
       "summary": "Ben Davidson reports what he describes as the first recorded ground-level gamma-ray event and discusses its significance. This is his interpretation; it is not an NOAA/NASA space-weather alert.",
@@ -125,22 +141,6 @@
       "headline": "Pole Shift History & Today's Collapse | S0 News Nov.21.2026",
       "summary": "Ben Davidson reviews past geomagnetic pole shifts and argues the present-day magnetic field is weakening along a similar path. He frames this as part of his Disaster Cycle thesis.",
       "link": "https://www.youtube.com/watch?v=HYTXz5aOj5A",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-20T12:00:00Z",
-      "headline": "Solar/Pole Shift Impact: Insects, Plants, Humans | S0 News Nov.20.2026",
-      "summary": "Davidson discusses how he claims solar activity and the ongoing magnetic shift affect insects, plants and people.",
-      "link": "https://www.youtube.com/watch?v=FEn1ymGXMF0",
-      "verified": "n/a"
-    },
-    {
-      "source": "sunweatherman",
-      "date": "2026-11-19T12:00:00Z",
-      "headline": "Magnetic Pole Shift Sky-Sign Confirmation | S0 News Nov.19.2026",
-      "summary": "Davidson reports what he describes as a visible sky sign confirming the magnetic pole shift. Same day, NOAA-level data show only a minor G1 storm from the Nov 14 CME.",
-      "link": "https://www.youtube.com/watch?v=-gf8P-YjrmQ",
       "verified": "n/a"
     },
     {
